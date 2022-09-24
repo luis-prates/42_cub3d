@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 14:41:47 by lprates           #+#    #+#             */
-/*   Updated: 2021/04/10 19:05:25 by lprates          ###   ########.fr       */
+/*   Updated: 2022/09/24 01:17:56 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 
 int             key_hook(int keycode, t_vars *vars)
 {
+	(void) vars;
     printf("Hello, this is key: %i\n", keycode);
+	return (1);
 }
 
 double	get_angle(int x, int y, int old_x, int old_y)
@@ -37,6 +39,7 @@ int             mouse_hook(int mouse_pos, int x, int y, t_vars *vars)
 	static int old_x = 10;
 	static int old_y = 0;
 	double angle;
+	(void) vars;
 
     printf("Hello, mouse clicked: %i\n", mouse_pos);
 	printf("Mouse at: %ix %iy\n", x, y);
@@ -48,17 +51,21 @@ int             mouse_hook(int mouse_pos, int x, int y, t_vars *vars)
 	}
 	old_x = x;
 	old_y = y;
+	return (1);
 }
 
 int             ft_close(int keycode, t_vars *vars)
 {
 	if (keycode == 53)
     	mlx_destroy_window(vars->mlx, vars->win);
+	return (1);
 }
 
 int	ft_resize(int x, int y, t_vars *vars)
 {
+	(void) vars;
 	printf("window has been resized to %ix %iy\n", x, y);
+	return (1);
 }
 
 int             main(void)
@@ -81,8 +88,12 @@ int             main(void)
 	
 	int color = create_trgb(0, 150, 218, 233);
 	int width;
-	int height = 0;
-	int color_shade = add_shade(0.7, color);
+	int height;
+	void	*img_wall;
+	char	*relative_path = "./wall_textures/wall1.xpm";
+	img_wall = mlx_xpm_file_to_image(vars.mlx, relative_path, &width, &height);
+	//int color_shade = add_shade(0.7, color);
+	img.img = img_wall;
 	int color_opos = get_oposite(color);
 	i = 0;
 	while(i < v)
@@ -93,11 +104,17 @@ int             main(void)
 			if (pow(j-125, 2) + pow(i-150, 2) < pow(100, 2))
 				my_mlx_pixel_put(&img, j++, i, 0x00FF0000);
 			else if (pow(j-275, 2) + pow(i-150, 2) < pow(100, 2))
-				my_mlx_pixel_put(&img, j++, i, 0x00FF0000);
+				my_mlx_pixel_put(&img, j++, i, color_opos);
 			else
-				my_mlx_pixel_put(&img, j++, i, 0x00000000);
+				j++;
+				//my_mlx_pixel_put(&img, j++, i, color_shade);*/
 		}
 		i++;
+	}
+	if (img_wall)
+	{
+		write(1, "It exists!", 11);
+		mlx_put_image_to_window(vars.mlx, vars.win, img_wall, 0, 0);
 	}
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	mlx_key_hook(vars.win, key_hook, &vars);

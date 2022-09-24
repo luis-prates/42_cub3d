@@ -17,8 +17,6 @@ do_configure	:
 	./configure
 
 clean	:
-	find . -type f | xargs touch
-	rm -rf $(OBJS)
 	./configure clean
 
 re	: clean all

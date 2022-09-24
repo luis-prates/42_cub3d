@@ -13,18 +13,18 @@ libft.a:
 	make bonus -C libft/
 
 minilibx:
-	$(MAKE) -C mlx/
+	$(MAKE) -C mlx_linux/
 
 %.o: %.c
-	$(CC) -Imlx -c $^ -o $@ $(INCLUDES)
+	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@ $(INCLUDES)
 
 $(NAME): $(OBJ)
-	$(CC) $^ -Lmlx/ -lmlx -framework OpenGL -framework AppKit -Llibft -lft -o $@ $(INCLUDES)
+	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) $(INCLUDES)
 
 
 clean:
 	$(MAKE) clean -C ./libft
-	$(MAKE) -C mlx/ clean
+	$(MAKE) -C mlx_linux/ clean
 	$(RM)   $(OBJ)
 
 fclean: clean

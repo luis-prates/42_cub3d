@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 21:43:19 by lprates           #+#    #+#             */
-/*   Updated: 2021/03/16 11:48:31 by lprates          ###   ########.fr       */
+/*   Updated: 2022/09/24 00:27:41 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,9 @@ static char	*loc_swap(char *ret, size_t i)
 static char	*loc_malloc(long t, size_t n)
 {
 	char	*ret;
+	(void) n;
 
-	if (n < 0)
-		ret = malloc(c_int(t) + 2);
-	else
-		ret = malloc(c_int(t) + 1);
+	ret = malloc(c_int(t) + 1);
 	return (ret);
 }
 
