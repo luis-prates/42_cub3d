@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 14:41:47 by lprates           #+#    #+#             */
-/*   Updated: 2022/09/24 01:31:52 by lprates          ###   ########.fr       */
+/*   Updated: 2022/09/24 11:36:55 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ int             main(void)
 	t_vars	vars;
 	int i = 0;
 	int j = 0;
-	int h = 600;
-	int v = 800;
+	int h = 1920;
+	int v = 1080;
 
     vars.mlx = mlx_init();
     vars.win = mlx_new_window(vars.mlx, h, v, "Hello world!");
     //img.img = mlx_new_image(mlx, 400, 400);
-    img.img = mlx_new_image(vars.mlx, h, v);
+    img.img = mlx_new_image(vars.mlx, h/2, v/2);
     img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
                                  &img.endian);
     //img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
@@ -95,10 +95,10 @@ int             main(void)
 	int color_shade = add_shade(0.7, color);
 	int color_opos = get_oposite(color);
 	i = 0;
-	while(i < v)
+	while(i < v/2)
 	{
 		j = 0;
-		while (j < h)
+		while (j < h/2)
 		{
 			if (pow(j-125, 2) + pow(i-150, 2) < pow(100, 2))
 				my_mlx_pixel_put(&img, j++, i, 0x00FF0000);
@@ -112,7 +112,6 @@ int             main(void)
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	if (img_wall)
 	{
-		write(1, "It exists!", 11);
 		mlx_put_image_to_window(vars.mlx, vars.win, img_wall, 300, 0);
 	}
 	mlx_key_hook(vars.win, key_hook, &vars);
