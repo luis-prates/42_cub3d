@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 14:41:47 by lprates           #+#    #+#             */
-/*   Updated: 2022/09/24 01:17:56 by lprates          ###   ########.fr       */
+/*   Updated: 2022/09/24 01:31:52 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,7 @@ int             main(void)
 	void	*img_wall;
 	char	*relative_path = "./wall_textures/wall1.xpm";
 	img_wall = mlx_xpm_file_to_image(vars.mlx, relative_path, &width, &height);
-	//int color_shade = add_shade(0.7, color);
-	img.img = img_wall;
+	int color_shade = add_shade(0.7, color);
 	int color_opos = get_oposite(color);
 	i = 0;
 	while(i < v)
@@ -106,17 +105,16 @@ int             main(void)
 			else if (pow(j-275, 2) + pow(i-150, 2) < pow(100, 2))
 				my_mlx_pixel_put(&img, j++, i, color_opos);
 			else
-				j++;
-				//my_mlx_pixel_put(&img, j++, i, color_shade);*/
+				my_mlx_pixel_put(&img, j++, i, color_shade);
 		}
 		i++;
 	}
+	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	if (img_wall)
 	{
 		write(1, "It exists!", 11);
-		mlx_put_image_to_window(vars.mlx, vars.win, img_wall, 0, 0);
+		mlx_put_image_to_window(vars.mlx, vars.win, img_wall, 300, 0);
 	}
-	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_mouse_hook(vars.win, mouse_hook, &vars);
 	mlx_hook(vars.win, 2, 1L<<0, ft_close, &vars);

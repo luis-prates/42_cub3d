@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 12:31:49 by lprates           #+#    #+#             */
-/*   Updated: 2021/04/10 17:59:33 by lprates          ###   ########.fr       */
+/*   Updated: 2022/09/24 01:25:14 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <math.h>
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
-# include "../mlx/mlx.h"
 
 
 typedef struct  s_vars {
