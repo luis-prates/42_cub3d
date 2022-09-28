@@ -15,18 +15,27 @@
 #include <stdio.h>
 #include "cub3d.h"
 
-int             key_hook(int keycode, t_vars *vars)
+int             ft_close(t_vars *vars)
+{
+	mlx_destroy_window(vars->mlx, vars->win);
+	exit (1);
+}
+
+int	key_hook(int keycode, t_vars *vars)
 {
 	(void) vars;
-    printf("Hello, this is key: %i\n", keycode);
+
+	printf("Hello, this is key: %i\n", keycode);
+	if (keycode == 65307)
+		ft_close(vars);
 	return (1);
 }
 
 double	get_angle(int x, int y, int old_x, int old_y)
 {
-	double dot_res;
-	double new_magn;
-	double old_magn;
+	double	dot_res;
+	double	new_magn;
+	double	old_magn;
 
 	dot_res = x * old_x + y * old_y;
 	new_magn = sqrt(pow(x, 2) + pow(y, 2));
@@ -36,10 +45,10 @@ double	get_angle(int x, int y, int old_x, int old_y)
 
 int             mouse_hook(int mouse_pos, int x, int y, t_vars *vars)
 {
-	static int old_x = 10;
-	static int old_y = 0;
-	double angle;
-	(void) vars;
+	static int	old_x = 10;
+	static int	old_y = 0;
+	double		angle;
+	(void)		vars;
 
     printf("Hello, mouse clicked: %i\n", mouse_pos);
 	printf("Mouse at: %ix %iy\n", x, y);
@@ -51,13 +60,6 @@ int             mouse_hook(int mouse_pos, int x, int y, t_vars *vars)
 	}
 	old_x = x;
 	old_y = y;
-	return (1);
-}
-
-int             ft_close(int keycode, t_vars *vars)
-{
-	if (keycode == 53)
-    	mlx_destroy_window(vars->mlx, vars->win);
 	return (1);
 }
 
@@ -82,7 +84,7 @@ int             main(void)
     //img.img = mlx_new_image(mlx, 400, 400);
     img.img = mlx_new_image(vars.mlx, h/2, v/2);
     img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-                                 &img.endian);
+								&img.endian);
     //img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
       //                           &img.endian);
 	
@@ -116,7 +118,7 @@ int             main(void)
 	}
 	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_mouse_hook(vars.win, mouse_hook, &vars);
-	mlx_hook(vars.win, 2, 1L<<0, ft_close, &vars);
+	//mlx_hook(vars.win, 2, 1L<<0, ft_close, &vars);
 	mlx_hook(vars.win, 25, 1L<<18, ft_resize, &vars);
 	mlx_loop(vars.mlx);
 }

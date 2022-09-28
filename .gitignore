@@ -1,0 +1,7 @@
+lodev_raycasting_tutorial
+libs/libft/*.o
+libs/libft/*.a
+src/*.o
+src/*/*.o
+a.out
+cub3d

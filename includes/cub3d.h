@@ -25,6 +25,11 @@
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
 
+# define mapWidth 24
+# define mapHeight 24
+# define screenWidth 640
+# define screenHeight 480
+
 
 typedef struct  s_vars {
     void        *mlx;
