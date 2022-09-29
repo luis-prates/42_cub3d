@@ -17,9 +17,9 @@ include_dirs := includes libs/libft/ libs/mlx_linux /usr/include
 includes := $(addprefix -I, $(include_dirs))
 libft = -L libs/libft -lft
 mlxlib := -Llibs/mlx_linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz
-turn_warnings_into_errors := -Werror
+turn_warnings_into_errors := #-Werror
 
-default_rule: clear_terminal remove_program norminette compile execute_program
+default_rule: clear_terminal remove_program norminette compile #execute_program
 
 clear_terminal:
 	@${clear_terminal}

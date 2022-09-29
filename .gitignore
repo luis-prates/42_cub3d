@@ -5,3 +5,4 @@ src/*.o
 src/*/*.o
 a.out
 cub3d
+scrap_code
