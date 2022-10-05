@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 16:14:10 by tosilva           #+#    #+#             */
-/*   Updated: 2021/10/27 12:32:07 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/05 17:49:58 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ short	ft_nbdigits_unsigned(unsigned long long n)
  *  Counts the number of digits, after dot of the number 'n'.
 **/
 static void
-	ft_fnbdigits_ctafter(long double *n, short *nafter, short *ndig)
+	ft_nbdecimal_digits(long double *n, short *nafter, short *ndig)
 {
-	while (1)
+	while (TRUE)
 	{
 		*nafter += 1;
 		if ((int)(*n * 10.0L) == 0)
@@ -82,10 +82,10 @@ static void
 }
 
 /**
- * Counts the number of digits, after and before dot, 
+ * Counts the number of digits, after and before dot,
  *	of the long double number 'n'.
  * @param	n [long double] number to be counted
- * @param	nbefore [short *] pointer to save the number 
+ * @param	nbefore [short *] pointer to save the number
  *				of digits before dot
  * @returns	[short] number of digits after dot
 **/
@@ -110,12 +110,12 @@ short	ft_nbdigits_float(long double n, short *nbefore)
 	n -= (long double)((int)n);
 	ndig = 0;
 	nafter = 0;
-	ft_fnbdigits_ctafter(&n, &nafter, &ndig);
+	ft_nbdecimal_digits(&n, &nafter, &ndig);
 	return (nafter);
 }
 
 /**
- * Counts the number of digits of the number 'n' 
+ * Counts the number of digits of the number 'n'
  *	with a base of size 'base_len'.
  * @param	n [long long] number to be counted
  * @param	base_len [size_t] base size

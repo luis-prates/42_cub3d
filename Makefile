@@ -6,7 +6,7 @@
 #    By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 18:49:28 by tosilva           #+#    #+#              #
-#    Updated: 2022/10/01 18:12:09 by tosilva          ###   ########.fr        #
+#    Updated: 2022/10/05 21:13:01 by tosilva          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,10 +47,7 @@ LIBMLX		:= ${addprefix $(LIBMLX_DIR), $(LIBMLX_FILE)}
 
 # FILES
 HFILES	:= cub3d.h
-CFILES	:= main.c \
-			colours.c \
-			colours_utils.c \
-			utils.c
+CFILES	:= main.c
 
 INC	:= ${foreach file, $(INC_DIR), ${addprefix $(INC_DIR), $(HFILES)}}
 SRC	:= ${foreach file, $(SRC_DIR), ${addprefix $(SRC_DIR), $(CFILES)}}
@@ -83,8 +80,8 @@ CL_NORM_NUM		:=$(COLORF_CYAN)
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra # -03
 DEBFLAGS	= -g -fsanitize=address
-INCFLAGS	:= -I./$(LIBMLX_DIR) -I./$(LIBFT_DIR)$(INC_DIR) -I./$(INC_DIR)
-LIBFLAGS	:= -L./$(LIBMLX_DIR) -L./$(LIBFT_DIR)$(BIN_DIR) -lft -lmlx -L/usr/lib -lXext -lX11 -lm -lz
+INCFLAGS	:= -I./$(LIBFT_DIR)$(INC_DIR) -I./$(LIBMLX_DIR) -I./$(INC_DIR)
+LIBFLAGS	:= -L./$(LIBFT_DIR)$(BIN_DIR) -lft -L./$(LIBMLX_DIR) -lmlx -L/usr/lib -lbsd -lXext -lX11 -lm -lz
 # (Linux) -> sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev
 #PKGFLAGS	= 'pkg-config readline --cflags' 'pkg-config readline --libs'
 
@@ -192,7 +189,6 @@ clean:
 fclean: clean
 	@$(MAKE) $@ -C $(LIBFT_DIR)
 	@$(RM) $(NAME)
-fclean: msg_deleted
 
 clean_dep:
 	@$(MAKE) $@ -C $(LIBFT_DIR)
@@ -203,6 +199,7 @@ clean_debug:
 	@$(RM) $(DEBUG_FILES)
 
 clean_all: fclean clean_dep clean_debug
+clean_all: msg_deleted
 
 
 ########################################

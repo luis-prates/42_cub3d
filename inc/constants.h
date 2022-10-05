@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 17:37:54 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/01 20:34:00 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/05 21:06:29 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,13 @@
 # define ALLOCATION_ERROR		12
 # define INVALID_ARGUMENT		22
 
-# define FILE_NOT_PROVIDED			"File not provider"
-# define FILE_OPEN_ERROR			"Error opening file"
-# define BAD_FILE_EXTENTION			"File extension must be '.cub'"
 # define MORE_THAN_ONE_MAP_GIVEN	"Only a map file is allowed"
+# define FILE_NOT_PROVIDED			"File not provider"
+# define BAD_FILE_EXTENTION			"File extension must be '.cub'"
+# define FILE_OPEN_ERROR			"Error opening file"
+# define TEXTURE_ERROR				"Error with one or more textures"
+
+
 # define MAP_WALL_INCOMPLETE		"Map wall incomplete"
 # define MAP_CHARACTER_INVALID		"Map character invalid"
 # define MAP_NOT_A_RECTANGULAR		"Map ins't a rectangular"
@@ -84,7 +87,15 @@
 /**
  * Cub3D Constants
  */
-# define GAME_TITLE				"WIP"
+# define GAME_TITLE	"WIP"
+
+# define NORTH_IDENTIFIER	0x50
+# define SOUTH_IDENTIFIER	0x55
+# define WEST_IDENTIFIER	0x60
+# define EAST_IDENTIFIER	0x65
+# define FLOOR_IDENTIFIER	0x10
+# define CEILING_IDENTIFIER	0x20
+
 # define IS_EMPTY_CHARACTER(c)	(c == '0' || c == ' ')
 # define IS_WALL_CHARACTER(c)	(c == '1')
 # define IS_NORTH_CHARACTER(c)	(c == 'N')

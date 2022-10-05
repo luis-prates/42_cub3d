@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 01:48:25 by tosilva           #+#    #+#             */
-/*   Updated: 2021/11/07 01:52:53 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/05 16:14:23 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # include <unistd.h>
 # include <limits.h>
 
+# define FALSE 0
+# define TRUE  1
+
+typedef unsigned char bool
+
 # define FD_STDIN       0
 # define FD_STDOUT      1
 # define FD_STDERROR    2
@@ -24,7 +29,7 @@
 # define FD_EOF 0
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE   42
+#  define BUFFER_SIZE 1
 # endif
 
 typedef struct s_list

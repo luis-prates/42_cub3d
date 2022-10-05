@@ -60,3 +60,5 @@ dkms.conf
 .DS_Store
 .vscode/
 .vs/
+lib/mlx_linux/
+cub3D
