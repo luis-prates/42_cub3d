@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 17:50:19 by tosilva           #+#    #+#             */
-/*   Updated: 2021/10/23 13:49:06 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/07 19:03:20 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static short	ft_wctostr__2(wchar_t c, unsigned char *str)
 	if (c < 0x010000)
 	{
 		str[0] = ((c >> 12) & 0x0F) | 0xE0;
-		str[1] = ((c >> 6 ) & 0x3F) | 0x80;
-		str[2] = ((c >> 0 ) & 0x3F) | 0x80;
+		str[1] = ((c >> 6) & 0x3F) | 0x80;
+		str[2] = ((c >> 0) & 0x3F) | 0x80;
 		str[3] = 0;
 		return (3);
 	}
@@ -26,8 +26,8 @@ static short	ft_wctostr__2(wchar_t c, unsigned char *str)
 	{
 		str[0] = ((c >> 18) & 0x07) | 0xF0;
 		str[1] = ((c >> 12) & 0x3F) | 0x80;
-		str[2] = ((c >> 6 ) & 0x3F) | 0x80;
-		str[3] = ((c >> 0 ) & 0x3F) | 0x80;
+		str[2] = ((c >> 6) & 0x3F) | 0x80;
+		str[3] = ((c >> 0) & 0x3F) | 0x80;
 		str[4] = 0;
 		return (4);
 	}

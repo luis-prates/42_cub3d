@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 01:47:07 by tosilva           #+#    #+#             */
-/*   Updated: 2021/11/07 02:16:59 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/08 01:49:08 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,14 @@ void	ft_freemtx(void ***pt)
 {
 	size_t	i;
 
-	if (pt && **pt)
+	if (pt && *pt && **pt)
 	{
 		i = 0;
 		while ((*pt)[i])
 		{
-			free((*pt)[i]);
-			(*pt)[i] = NULL;
+			ft_free((void **)&(*pt)[i]);
 			i++;
 		}
-		free(*pt);
-		*pt = NULL;
+		ft_free((void **)pt);
 	}
 }

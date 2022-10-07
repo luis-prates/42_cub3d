@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 01:48:25 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/05 16:14:23 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/07 21:37:43 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@
 # include <unistd.h>
 # include <limits.h>
 
+typedef unsigned char	t_bool;
 # define FALSE 0
 # define TRUE  1
-
-typedef unsigned char bool
 
 # define FD_STDIN       0
 # define FD_STDOUT      1

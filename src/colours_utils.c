@@ -6,35 +6,33 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 17:53:46 by lprates           #+#    #+#             */
-/*   Updated: 2022/10/01 18:51:44 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/08 04:22:21 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "colours.h"
 
-// seems to work
-int	add_shade(double distance, int color)
+int	add_shade(double const distance, int const colour)
 {
 	int	t;
 	int	r;
 	int	g;
 	int	b;
 
-	t = get_t(color);
-	r = get_r(color);
-	g = get_g(color);
-	b = get_b(color);
+	t = get_t(colour);
+	r = get_r(colour);
+	g = get_g(colour);
+	b = get_b(colour);
 	r -= ((int)((r >> 16) * distance) << 16);
 	g -= ((int)((g >> 8) * distance) << 8);
 	b -= (b * distance);
 	return (t | r | g | b);
 }
 
-// seems to work
-int	get_opposite(int color)
+int	get_opposite(int const colour)
 {
-	int	opposite_color;
+	int	opposite_colour;
 
-	opposite_color = 0xFFFFFF - color;
-	return (opposite_color);
+	opposite_colour = 0xFFFFFF - colour; // ?? No transparent on "0xFFFFFF" ??
+	return (opposite_colour);
 }

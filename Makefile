@@ -6,7 +6,7 @@
 #    By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 18:49:28 by tosilva           #+#    #+#              #
-#    Updated: 2022/10/05 21:13:01 by tosilva          ###   ########.fr        #
+#    Updated: 2022/10/08 03:39:33 by tosilva          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,14 +40,29 @@ LIBFT_DIR	= ${addprefix $(LIB_DIR), libft/}
 LIBFT_FILE	= libft.a
 LIBFT		:= ${addprefix $(LIBFT_DIR), ${addprefix $(BIN_DIR), $(LIBFT_FILE)}}
 
-LIBMLX_DIR	= ${addprefix $(LIB_DIR), mlx_linux/}
+LIBMLX_DIR	= ${addprefix $(LIB_DIR), minilibx-linux/}
 LIBMLX_FILE	= libmlx.a
 LIBMLX		:= ${addprefix $(LIBMLX_DIR), $(LIBMLX_FILE)}
 
 
 # FILES
-HFILES	:= cub3d.h
-CFILES	:= main.c
+HFILES	:= colours.h \
+			constants.h \
+			data.h \
+			cub3d.h
+
+CFILES	:= colours.c \
+			colours_utils.c \
+			mlx_images.c \
+			mlx_utils.c \
+			parser.c \
+			parser_utils_1.c \
+			parser_utils_2.c \
+			parser_colour.c \
+			parser_map.c \
+			parser_texture.c \
+			singletons.c \
+			main.c
 
 INC	:= ${foreach file, $(INC_DIR), ${addprefix $(INC_DIR), $(HFILES)}}
 SRC	:= ${foreach file, $(SRC_DIR), ${addprefix $(SRC_DIR), $(CFILES)}}
