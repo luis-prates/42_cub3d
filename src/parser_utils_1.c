@@ -6,24 +6,54 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:51:57 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/08 01:23:03 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/16 12:59:43 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	skip_spaces(char const **str)
+t_bool	is_valid_cub_extention(char const *filename)
 {
-	if (str && *str)
+	t_bool	ret;
+	ssize_t	idx_extention;
+
+	ret = TRUE;
+	idx_extention = ft_strlen(filename) - 4;
+	if (idx_extention < 1
+		|| ft_strncmp(&filename[idx_extention], ".cub", 5) != 0)
 	{
-		while (**str && ft_isspace(**str))
-			(*str)++;
+		ft_strerror(INVALID_ARGUMENT, BAD_FILE_EXTENTION);
+		ret = FALSE;
 	}
+	return (ret);
+}
+
+t_bool	are_textures_n_colours_parsed(void)
+{
+	t_map	*map;
+
+	map = get_map_singleton();
+	return (map->textures.north.img
+		&& map->textures.south.img
+		&& map->textures.west.img
+		&& map->textures.east.img
+		&& map->colours.celling != -1
+		&& map->colours.floor != -1);
+}
+
+char const	*skip_spaces(char const *str)
+{
+	if (str)
+	{
+		while (*str && ft_isblank(*str))
+			str++;
+	}
+	return (str);
 }
 
 t_identifier	get_identifier_type(char const *line)
 {
-	skip_spaces(&line);
+	line = skip_spaces(line);
 	if (ft_strncmp(line, "NO ", 3) == 0)
 		return (NORTH);
 	else if (ft_strncmp(line, "SO ", 3) == 0)
@@ -50,16 +80,16 @@ char const	*get_identifier_description(char const *line)
 
 	description = NULL;
 	temp = line;
-	skip_spaces(&temp);
+	temp = skip_spaces(temp);
 	temp += 2;
-	skip_spaces(&temp);
+	temp = skip_spaces(temp);
 	if (*temp)
 	{
 		description = temp;
-		while (*temp && !ft_isspace(*temp))
+		while (*temp && !ft_isblank(*temp))
 			temp++;
-		description = ft_substr(line,  description - line, temp - description);
-		while (*temp && ft_isspace(*temp))
+		description = ft_substr(line, description - line, temp - description);
+		while (*temp && ft_isblank(*temp))
 			temp++;
 		if (*temp)
 			ft_free((void **)&description);

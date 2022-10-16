@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 17:37:54 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/08 06:39:49 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/15 17:15:52 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@
 # define FILE_OPEN_ERROR				"Error opening file"
 # define INVALID_IDENTIFIER				"File has an invalid identifier"
 # define MISSING_IDENTIFIERS_BEFORE_MAP	"Missing identifiers before map"
+# define IDENTIFIERS_AFTER_MAP			"An identifier cannot be after the map"
 # define TEXTURE_ERROR					"Error with one or more textures"
 # define INVALID_TEXTURE_DESCRIPTION	"Invalid texture description"
 # define INVALID_COLOUR_DESCRIPTION		"Invalid colour description"

@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 01:48:25 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/07 21:37:43 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/16 11:54:42 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			**ft_split(char const *s, char c);
 size_t			ft_strlen(const char *str);
 size_t			ft_strnlen(const char *s, size_t maxlen);
+size_t			ft_charcount(const char *str, char const c);
 size_t			ft_strlcpy(char *dst, const char *src, size_t size);
 size_t			ft_strlcat(char *dst, const char *src, size_t size);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);

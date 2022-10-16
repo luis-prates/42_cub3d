@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 12:31:49 by lprates           #+#    #+#             */
-/*   Updated: 2022/10/08 04:25:38 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/16 13:20:06 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,22 @@ void			pixel_mlx_image_put(t_mlximage *image,
 t_bool			is_valid_cub_extention(char const *filename);
 t_bool			is_texture_identifier(t_identifier const identifier_type);
 t_bool			is_colour_identifier(t_identifier const identifier_type);
+t_bool			is_player_character(char const c);
 t_bool			is_map_character(char const c);
 t_bool			are_textures_n_colours_parsed(void);
+t_bool			is_map_parsed(void);
 
-void			skip_spaces(char const **str);
+char const		*skip_spaces(char const *str);
 t_identifier	get_identifier_type(char const *identifier);
 char const		*get_identifier_description(char const *line);
 
+t_bool			is_line_valid(char const *line_before, char **line);
+t_bool			skip_identifiers(int const fd, char const *first_line);
+t_bool			alloc_n_convert_map(int const fd, char const *first_line);
+
 t_bool			convert_texture(t_identifier const type, char const *line);
 t_bool			convert_colour(t_identifier const type, char const *line);
-t_bool			convert_map(int fd, char const *const line);
+t_bool			convert_map(int const fd, char const *line);
 
 t_bool			parse_map(char const *filename);
 

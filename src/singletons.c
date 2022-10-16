@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:15:57 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/08 03:35:01 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/16 13:21:59 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,15 @@ void	free_singletons(void)
 	t_mlx		*mlx;
 
 	map = get_map_singleton();
+	if (map->map)
+	{
+		for (size_t y = 0; y < map->height; y++)
+		{
+			for (size_t x = 0; x < map->width; x++)
+				printf("%i", map->map[y][x]);
+			printf("\n");
+		}
+	}
 	free_mlximage((void *)&map->textures.west);
 	free_mlximage((void *)&map->textures.east);
 	free_mlximage((void *)&map->textures.south);

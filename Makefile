@@ -6,7 +6,7 @@
 #    By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 18:49:28 by tosilva           #+#    #+#              #
-#    Updated: 2022/10/08 03:39:33 by tosilva          ###   ########.fr        #
+#    Updated: 2022/10/16 13:10:37 by tosilva          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,8 @@ CFILES	:= colours.c \
 			parser_utils_2.c \
 			parser_colour.c \
 			parser_map.c \
+			parser_map_utils_1.c \
+			parser_map_utils_2.c \
 			parser_texture.c \
 			singletons.c \
 			main.c

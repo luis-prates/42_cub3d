@@ -6,7 +6,7 @@
 #    By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 18:49:28 by tosilva           #+#    #+#              #
-#    Updated: 2021/11/07 01:54:00 by tosilva          ###   ########.fr        #
+#    Updated: 2022/10/16 11:57:01 by tosilva          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,7 +120,8 @@ PUT_FILES	:= ft_putchar_fd.c \
 				ft_putendl_fd.c \
 				ft_putnbr_fd.c \
 				ft_putstr_fd.c
-STR_FILES	:= ft_split.c \
+STR_FILES	:= ft_charcount.c \
+				ft_split.c \
 				ft_strchr.c \
 				ft_strdup.c \
 				ft_strjoin.c \
@@ -274,52 +275,52 @@ ifeq ($(strip $(folder)),$(filter $(strip $(folder)), inc))
 	@$(NORM) $(INCS) | $(NORM_COLORS)
 endif
 ifeq ($(strip $(folder)),$(filter $(strip $(folder)), char))
-	@echo 
+	@echo
 	@echo "▱▱▱▱▱ CHAR FILES ▱▱▱▱▱"
 	@$(NORM) $(CHAR_SRC) | $(NORM_COLORS)
 endif
 ifeq ($(strip $(folder)),$(filter $(strip $(folder)), conv))
-	@echo 
+	@echo
 	@echo "▱▱▱▱▱ CONV FILES ▱▱▱▱▱"
 	@$(NORM) $(CONV_SRC) | $(NORM_COLORS)
 endif
 ifeq ($(strip $(folder)),$(filter $(strip $(folder)), files))
-	@echo 
+	@echo
 	@echo "▱▱▱▱▱ FILES FILES ▱▱▱▱▱"
 	@$(NORM) $(FILES_SRC) | $(NORM_COLORS)
 endif
 ifeq ($(strip $(folder)),$(filter $(strip $(folder)), lst))
-	@echo 
+	@echo
 	@echo "▱▱▱▱▱ LST FILES ▱▱▱▱▱"
 	@$(NORM) $(LST_SRC) | $(NORM_COLORS)
 endif
 ifeq ($(strip $(folder)),$(filter $(strip $(folder)), math))
-	@echo 
+	@echo
 	@echo "▱▱▱▱▱ MATH FILES ▱▱▱▱▱"
 	@$(NORM) $(MATH_SRC) | $(NORM_COLORS)
 endif
 ifeq ($(strip $(folder)),$(filter $(strip $(folder)), mem))
-	@echo 
+	@echo
 	@echo "▱▱▱▱▱ MEM FILES ▱▱▱▱▱"
 	@$(NORM) $(MEM_SRC) | $(NORM_COLORS)
 endif
 ifeq ($(strip $(folder)),$(filter $(strip $(folder)), nbr))
-	@echo 
+	@echo
 	@echo "▱▱▱▱▱ NBR FILES ▱▱▱▱▱"
 	@$(NORM) $(NBR_SRC) | $(NORM_COLORS)
 endif
 ifeq ($(strip $(folder)),$(filter $(strip $(folder)), norm))
-	@echo 
+	@echo
 	@echo "▱▱▱▱▱ NORM FILES ▱▱▱▱▱"
 	@$(NORM) $(NORM_SRC) | $(NORM_COLORS)
 endif
 ifeq ($(strip $(folder)),$(filter $(strip $(folder)), put))
-	@echo 
+	@echo
 	@echo "▱▱▱▱▱ PUT FILES ▱▱▱▱▱"
 	@$(NORM) $(PUT_SRC) | $(NORM_COLORS)
 endif
 ifeq ($(strip $(folder)),$(filter $(strip $(folder)), str))
-	@echo 
+	@echo
 	@echo "▱▱▱▱▱ STR FILES ▱▱▱▱▱"
 	@$(NORM) $(STR_SRC) | $(NORM_COLORS)
 endif
@@ -360,7 +361,7 @@ re: fclean all
 ########################################
 
 msg_compiling:
-	@echo 
+	@echo
 	@echo "[ ... ] Creating ./$(NAME) [ ... ]"
 
 msg_created:

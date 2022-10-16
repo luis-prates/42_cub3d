@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:21:53 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/08 04:44:09 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/15 19:18:32 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_colours
 
 typedef struct s_map
 {
+	char const	*filename;
 	int			**map;
 	size_t		width;
 	size_t		height;

@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:42:20 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/08 04:24:28 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/16 12:58:06 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 static t_bool	convert_identifier(int fd, t_identifier type, char const *line)
 {
-	t_bool ret;
+	t_bool	ret;
 
 	ret = FALSE;
 	if (is_texture_identifier(type))
 		ret = convert_texture(type, line);
 	else if (is_colour_identifier(type))
 		ret = convert_colour(type, line);
-	else if (type == MAP && are_textures_n_colours_parsed())
+	else if (type == MAP && are_textures_n_colours_parsed() && !is_map_parsed())
 		ret = convert_map(fd, line);
+	else if (is_map_parsed())
+		ft_strerror(INVALID_ARGUMENT, IDENTIFIERS_AFTER_MAP);
 	else
 		ft_strerror(INVALID_ARGUMENT, MISSING_IDENTIFIERS_BEFORE_MAP);
 	return (ret);
@@ -59,6 +61,7 @@ static t_bool	convert_file(char const *filename)
 {
 	t_bool	ret;
 	int		fd;
+	t_map	*map;
 
 	ret = FALSE;
 	fd = open(filename, O_RDONLY);
@@ -68,6 +71,8 @@ static t_bool	convert_file(char const *filename)
 	}
 	else
 	{
+		map = get_map_singleton();
+		map->filename = filename;
 		ret = fill_map_n_player(fd);
 		close(fd);
 	}

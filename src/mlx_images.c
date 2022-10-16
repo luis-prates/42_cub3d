@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 21:57:55 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/08 03:31:35 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/16 12:57:38 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ t_mlximage	xpm_to_mlx_image(char const *file)
 	if (mlx->connection)
 	{
 		image.img = mlx_xpm_file_to_image(mlx->connection, (char *)file,
-			&image.width, &image.height);
+				&image.width, &image.height);
 		if (image.img)
 			image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel,
-				&image.line_length, &image.endian);
+					&image.line_length, &image.endian);
 		else
 			ft_strerror(ALLOCATION_ERROR, MLX_IMAGE_CREATION_ERROR);
 	}
@@ -49,7 +49,7 @@ t_mlximage	new_mlx_image(int const width, int const height)
 		if (image.img)
 		{
 			image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel,
-				&image.line_length, &image.endian);
+					&image.line_length, &image.endian);
 			image.width = width;
 			image.height = height;
 		}
@@ -98,6 +98,6 @@ void	pixel_mlx_image_put(t_mlximage *image,
 	{
 		dst = image->addr
 			+ (y * image->line_length + x * (image->bits_per_pixel / 8));
-		*(unsigned int*)dst = color;
+		*(unsigned int *)dst = color;
 	}
 }

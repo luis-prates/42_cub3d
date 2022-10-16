@@ -6,18 +6,18 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:51:57 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/08 03:33:54 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/10/16 13:05:28 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static t_bool is_major_colour(int colour)
+static t_bool	is_major_colour(int colour)
 {
 	return (colour >= 0 && colour <= 255);
 }
 
-static t_bool are_valid_integers(char const **colours)
+static t_bool	are_valid_integers(char const **colours)
 {
 	t_bool	ret;
 	short	idx_colour;
@@ -42,9 +42,10 @@ static t_bool are_valid_integers(char const **colours)
 	return (ret);
 }
 
-static t_bool split_string_to_major_colours(char const *str, int *const r, int *const g, int *const b)
+static t_bool	split_string_to_major_colours(char const *str,
+	int *const r, int *const g, int *const b)
 {
-	t_bool		ret;
+	t_bool	ret;
 	char	**colours;
 
 	ret = FALSE;
@@ -54,7 +55,8 @@ static t_bool split_string_to_major_colours(char const *str, int *const r, int *
 		*r = ft_atoi(colours[0]);
 		*g = ft_atoi(colours[1]);
 		*b = ft_atoi(colours[2]);
-		ret = is_major_colour(*r) && is_major_colour(*g) && is_major_colour(*b);
+		ret = ft_ternchar(is_major_colour(*r) && is_major_colour(*g)
+				&& is_major_colour(*b), TRUE, FALSE);
 	}
 	ft_freemtx((void ***)&colours);
 	return (ret);
@@ -86,7 +88,7 @@ static int	get_colour(char const *line)
 	return (trgb);
 }
 
-t_bool convert_colour(t_identifier const type, char const *line)
+t_bool	convert_colour(t_identifier const type, char const *line)
 {
 	t_bool	ret;
 	t_map	*map;
