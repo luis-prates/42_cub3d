@@ -51,6 +51,8 @@ typedef enum e_movement {
 # define mapHeight 24
 # define screenWidth 640
 # define screenHeight 480
+# define texWidth 1732
+# define texHeight 1732
 
 // lodev tutorial ends
 
@@ -99,8 +101,14 @@ typedef struct s_color
 
 typedef struct s_texture
 {
-	void	*left;
-	void	*right;
+	int		one[texWidth * texHeight];
+	int		two[texWidth * texHeight];
+	int		three[texWidth * texHeight];
+	int		four[texWidth * texHeight];
+	int		five[texWidth * texHeight];
+	int		six[texWidth * texHeight];
+	int		seven[texWidth * texHeight];
+	int		eight[texWidth * texHeight];
 }		t_texture;
 
 typedef struct s_map
