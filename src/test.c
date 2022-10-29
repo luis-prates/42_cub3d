@@ -213,16 +213,16 @@ int	render_next_frame(t_mlx *all)
 	//move left if no wall behind you
 	if (player->movement == STRAFEL)
 	{
-		//if (worldMap[(int) (player->pos_x + player->dir_y * moveSpeed)][(int) player->pos_y] == 0)
-			player->pos_x += player->dir_y * moveSpeed;
-		//if (worldMap[(int) player->pos_x][(int) (player->pos_y + player->dir_x * moveSpeed)] == 0)
+		if (worldMap[(int) (player->pos_x - player->dir_y * moveSpeed)][(int) player->pos_y] == 0)
+			player->pos_x -= player->dir_y * moveSpeed;
+		if (worldMap[(int) player->pos_x][(int) (player->pos_y + player->dir_x * moveSpeed)] == 0)
 			player->pos_y += player->dir_x * moveSpeed;
 	}
 	//move right if no wall behind you
 	if (player->movement == STRAFER)
 	{
-		if (worldMap[(int) (player->pos_x - player->dir_y * moveSpeed)][(int) player->pos_y] == 0)
-			player->pos_x -= player->dir_y * moveSpeed;
+		if (worldMap[(int) (player->pos_x + player->dir_y * moveSpeed)][(int) player->pos_y] == 0)
+			player->pos_x += player->dir_y * moveSpeed;
 		if (worldMap[(int) player->pos_x][(int) (player->pos_y - player->dir_x * moveSpeed)] == 0)
 			player->pos_y -= player->dir_x * moveSpeed;
 	}
@@ -248,6 +248,7 @@ int	render_next_frame(t_mlx *all)
 		player->plane_x = player->plane_x * cos(rotSpeed) - player->plane_y * sin(rotSpeed);
 		player->plane_y = oldPlaneX * sin(rotSpeed) + player->plane_y * cos(rotSpeed);
 	}
+	printf("posx: %f, posy: %f\n", player->pos_x, player->pos_y);
 	return (0);
 }
 

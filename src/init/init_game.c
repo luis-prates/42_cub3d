@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:57:37 by lprates           #+#    #+#             */
-/*   Updated: 2022/10/29 12:16:08 by lprates          ###   ########.fr       */
+/*   Updated: 2022/10/29 16:47:16 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void init_game(t_mlx *all, t_player *player)
 	all->mlx = mlx_init();
 	all->win = mlx_new_window(all->mlx, screenWidth,
 			screenHeight, "The Guy Game!");
-	player->pos_x = 12;
-	player->pos_y = 20;
+	player->pos_x = 20;
+	player->pos_y = 12;
 	player->dir_x = -1;
 	player->dir_y = 0;
 	player->plane_x = 0;
