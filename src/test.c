@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <math.h>
-#include <stdio.h>
 #include "cub3d.h"
 
 int worldMap[mapWidth][mapHeight]=
@@ -198,7 +195,7 @@ int	render_next_frame(t_mlx *all)
 	double rotSpeed = frameTime * 3.0; //the constant value is in radians/second
 
 	//move forward if no wall in front of you
-	if (forward)
+	if (player->movement == FORWARD)
 	{
 		if (worldMap[(int) (player->pos_x + player->dir_x * moveSpeed)][(int) player->pos_y] == 0)
 			player->pos_x += player->dir_x * moveSpeed;
@@ -206,15 +203,31 @@ int	render_next_frame(t_mlx *all)
 			player->pos_y += player->dir_y * moveSpeed;
 	}
 	//move backwards if no wall behind you
-	if (backwards)
+	if (player->movement == BACKWARDS)
 	{
 		if (worldMap[(int) (player->pos_x - player->dir_x * moveSpeed)][(int) player->pos_y] == 0)
 			player->pos_x -= player->dir_x * moveSpeed;
 		if (worldMap[(int) player->pos_x][(int) (player->pos_y - player->dir_y * moveSpeed)] == 0)
 			player->pos_y -= player->dir_y * moveSpeed;
 	}
+	//move left if no wall behind you
+	if (player->movement == STRAFEL)
+	{
+		//if (worldMap[(int) (player->pos_x + player->dir_y * moveSpeed)][(int) player->pos_y] == 0)
+			player->pos_x += player->dir_y * moveSpeed;
+		//if (worldMap[(int) player->pos_x][(int) (player->pos_y + player->dir_x * moveSpeed)] == 0)
+			player->pos_y += player->dir_x * moveSpeed;
+	}
+	//move right if no wall behind you
+	if (player->movement == STRAFER)
+	{
+		if (worldMap[(int) (player->pos_x - player->dir_y * moveSpeed)][(int) player->pos_y] == 0)
+			player->pos_x -= player->dir_y * moveSpeed;
+		if (worldMap[(int) player->pos_x][(int) (player->pos_y - player->dir_x * moveSpeed)] == 0)
+			player->pos_y -= player->dir_x * moveSpeed;
+	}
 	//rotate to the right
-	if (right)
+	if (player->movement == ROTR)
 	{
 		//both camera direction and camera plane must be rotated
 		double oldDirX = player->dir_x;
@@ -225,7 +238,7 @@ int	render_next_frame(t_mlx *all)
 		player->plane_y = oldPlaneX * sin(-rotSpeed) + player->plane_y * cos(-rotSpeed);
 	}
 	//rotate to the left
-	if (left)
+	if (player->movement == ROTL)
 	{
 		//both camera direction and camera plane must be rotated
 		double oldDirX = player->dir_x;

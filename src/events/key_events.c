@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 18:03:28 by lprates           #+#    #+#             */
-/*   Updated: 2022/10/11 18:04:52 by lprates          ###   ########.fr       */
+/*   Updated: 2022/10/29 12:58:06 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,36 @@
 
 int	key_hook_press(int keycode, t_mlx *all)
 {
-	static int	mov = 0;
+	static int		mov = 0;
+	t_player		*player;
 
+	player = player_singleton(NULL);
+	printf("keycode: %i", keycode);
 	//if (keycode == 53 || keycode == 65307)
 	//	window_close(all, 0);
 	if (keycode == W || keycode == 119)
-		forward = 1;
+		player->movement = FORWARD;
 	else if (keycode == S || keycode == 115)
-		backwards = 1;
+		player->movement = BACKWARDS;
 	else if (keycode == A || keycode == 97)
-		left = 1;
+		player->movement = STRAFEL;
 	else if (keycode == D || keycode == 100)
-		right = 1;
+		player->movement = STRAFER;
+	else if (keycode == RGARROW)
+		player->movement = ROTR;
+	else if (keycode == LFARROW)
+		player->movement = ROTL;
 	else
 		return (0);
-	printf("Number of movements: %i\n", ++mov);
+	printf("Number of movements: %i\n movement code: %i\n", ++mov, player->movement);
 	return (1);
 }
 
 int	key_hook_release(int keycode, t_mlx *all)
 {
-	forward = 0;
-	backwards = 0;
-	left = 0;
-	right = 0;
+	t_player		*player;
+
+	player = player_singleton(NULL);
+	player->movement = NONE;
 	return (1);
 }

@@ -1,7 +1,7 @@
 clear_terminal := clear
 compile := gcc
 compile_option := -O3 -c
-enable_warnings := -Wall -Wextra
+enable_warnings := -Wall -Wextra -fsanitize=address -g
 #header_file := ./minishell.h
 library_option := -l
 NAME := cub3d

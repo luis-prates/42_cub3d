@@ -25,23 +25,32 @@
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
 # include <sys/time.h>
+# include <mlx.h>
 
+// defines input key codes
 # define W 13
 # define S 1
 # define A 0
 # define D 2
+# define LFARROW 65361
+# define RGARROW 65363
+# define ESCAPE 65307
+
+typedef enum e_movement {
+	NONE,
+	FORWARD,
+	BACKWARDS,
+	STRAFEL,
+	STRAFER,
+	ROTL,
+	ROTR
+}			t_movement;
 
 // lodev tutorial starts
 # define mapWidth 24
 # define mapHeight 24
 # define screenWidth 640
 # define screenHeight 480
-
-// to remove from global
-static int left;
-static int right;
-static int forward;
-static int backwards;
 
 // lodev tutorial ends
 
@@ -55,12 +64,13 @@ typedef struct s_data {
 
 typedef struct s_player
 {
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	t_movement	movement;
 }			t_player;
 
 typedef struct s_draw
@@ -128,7 +138,7 @@ int			get_oposite(int color);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 // init
-void		init_game(t_mlx *all, t_player *player);
+void		nit_game(t_mlx *all, t_player *player);
 void		new_image(t_mlx	*all);
 
 // events
