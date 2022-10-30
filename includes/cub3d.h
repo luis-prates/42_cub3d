@@ -51,8 +51,8 @@ typedef enum e_movement {
 # define mapHeight 24
 # define screenWidth 640
 # define screenHeight 480
-# define texWidth 1732
-# define texHeight 1732
+# define texWidth 64
+# define texHeight 64
 
 // lodev tutorial ends
 
@@ -99,17 +99,11 @@ typedef struct s_color
 	int	top;
 }		t_color;
 
-typedef struct s_texture
+/*typedef struct s_texture
 {
-	int		one[texWidth * texHeight];
-	int		two[texWidth * texHeight];
-	int		three[texWidth * texHeight];
-	int		four[texWidth * texHeight];
-	int		five[texWidth * texHeight];
-	int		six[texWidth * texHeight];
-	int		seven[texWidth * texHeight];
-	int		eight[texWidth * texHeight];
-}		t_texture;
+	mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+								&img.endian);
+}		t_texture;*/
 
 typedef struct s_map
 {
@@ -117,7 +111,7 @@ typedef struct s_map
 	int			size_x;
 	int			size_y;
 	t_color		colors;
-	t_texture	textures;
+	//t_texture	textures;
 }				t_map;
 
 // from soLong
@@ -144,6 +138,7 @@ int			get_b(int trgb);
 int			add_shade(double distance, int color);
 int			get_oposite(int color);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int			my_get_image_pixel(t_data *data, int x, int y);
 
 // init
 void		nit_game(t_mlx *all, t_player *player);

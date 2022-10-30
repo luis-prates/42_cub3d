@@ -67,13 +67,13 @@ int		draw_image(t_mlx *all, int x, int color, t_draw draw)
 		if (j < screenHeight / 2)
 			my_mlx_pixel_put(&all->img, x, j, create_trgb(0, 0, 255, 0));
 		if (j > screenHeight / 2)
-			my_mlx_pixel_put(&all->img, x, j, create_trgb(0, 0, 0, 255));
+			my_mlx_pixel_put(&all->img, x, j, create_trgb(0, 0, 255, 255));
 	}
 	//color = create_trgb(0, 255, 255, 0);
-	/*for (int i = draw.draw_start; i < draw.draw_end; i++)
+	for (int i = draw.draw_start; i < draw.draw_end; i++)
 	{
 		my_mlx_pixel_put(&all->img, x, i, color);
-	}*/
+	}
 }
 
 /* static double posX = 22, posY = 12;  //x and y start position
@@ -87,27 +87,20 @@ int	render_next_frame(t_mlx *all)
 	t_draw			draw;
 	//int				color;
 	t_player		*player;
-	void			*texture[8];
+	//__uint32_t		texture[8][texWidth * texHeight];
 	__uint32_t		buffer[screenHeight][screenWidth];
+	t_data			texture_image[4];
+	char			*paths[4] = {"./wall_textures/colorstone.xpm", "./wall_textures/redbrick.xpm","./wall_textures/purplestone.xpm","./wall_textures/eagle.xpm"};
 
 	unsigned long tw, th;
-	texture[0] = mlx_xpm_file_to_image(all->mlx, "./wall_textures/wall1.xpm", &tw, &th);
-	for(int x = 0; x < texWidth; x++)
-		for(int y = 0; y < texHeight; y++)
-		{
-			int xorcolor = (x * 256 / texWidth) ^ (y * 256 / texHeight);
-			//int xcolor = x * 256 / texWidth;
-			int ycolor = y * 256 / texHeight;
-			int xycolor = y * 128 / texHeight + x * 128 / texWidth;
-			/*texture[0][texWidth * y + x] = 65536 * 254 * (x != y && x != texWidth - y); //flat red texture with black cross
-			texture[1][texWidth * y + x] = xycolor + 256 * xycolor + 65536 * xycolor; //sloped greyscale
-			texture[2][texWidth * y + x] = 256 * xycolor + 65536 * xycolor; //sloped yellow gradient
-			texture[3][texWidth * y + x] = xorcolor + 256 * xorcolor + 65536 * xorcolor; //xor greyscale
-			texture[4][texWidth * y + x] = 256 * xorcolor; //xor green
-			texture[5][texWidth * y + x] = 65536 * 192 * (x % 16 && y % 16); //red bricks
-			texture[6][texWidth * y + x] = 65536 * ycolor; //red gradient
-			texture[7][texWidth * y + x] = 128 + 256 * 128 + 65536 * 128; //flat grey texture*/
-		}
+	int v = 0;
+	while (v < 4)
+	{
+		texture_image[v].img = mlx_xpm_file_to_image(all->mlx, paths[v], &tw, &th);
+		texture_image[v].addr = mlx_get_data_addr(texture_image[v].img, &texture_image[v].bits_per_pixel, &texture_image[v].line_length, &texture_image[v].endian);	
+		v++;
+	}
+
 	player = player_singleton(NULL);
 	new_image(all);
 	for(int x = 0; x < screenWidth; x++)
@@ -156,6 +149,7 @@ int	render_next_frame(t_mlx *all)
 			draw.step_y = 1;
 			draw.side_dist_y = (draw.map_y + 1.0 - player->pos_y) * draw.delta_dist_y;
 		}
+		int orient;
 		//perform DDA
 		while (hit == 0)
 		{
@@ -165,11 +159,19 @@ int	render_next_frame(t_mlx *all)
 				draw.side_dist_x += draw.delta_dist_x;
 				draw.map_x += draw.step_x;
 				side = 0;
+				if (draw.step_x == -1)
+					orient = 3;
+				else if (draw.step_x == 1)
+					orient = 4;
 			}
 			else
 			{
 				draw.side_dist_y += draw.delta_dist_y;
 				draw.map_y += draw.step_y;
+				if (draw.step_y == -1)
+					orient = 1;
+				else if (draw.step_y == 1)
+					orient = 2;
 				side = 1;
 			}
 			//Check if ray has hit a wall
@@ -192,7 +194,7 @@ int	render_next_frame(t_mlx *all)
 		if (draw.draw_end >= screenHeight)
 			draw.draw_end = screenHeight - 1;
 
-		int texNum = worldMap[draw.map_x][draw.map_y] - 1;
+		//int texNum = orient;
 
 		double wallX;
 		if (side == 0)
@@ -206,13 +208,6 @@ int	render_next_frame(t_mlx *all)
 			texX = texWidth - texX - 1;
 		if (side == 1 && draw.ray_dir_y < 0)
 			texX = texWidth - texX - 1;
-		//color = create_trgb(0, 255, 218, 0);
-		/*switch(worldMap[draw.map_x][draw.map_y])
-		{
-			case 1:  color = create_trgb(100, 255, 255, 0);  break;
-			default: color = get_oposite(color); break;
-		}*/
-		//give x and y sides different brightness
 		double step = 1.0 * texHeight / lineHeight;
 		double texPos = (draw.draw_start - screenHeight / 2 + lineHeight / 2) * step;
 		draw_image(all, x, 10, draw);
@@ -220,14 +215,14 @@ int	render_next_frame(t_mlx *all)
 		{
 			int texY = (int)texPos & (texHeight - 1);
 			texPos += step;
-			__uint32_t color = texture[0];
+			int color;
+			color = my_get_image_pixel(&texture_image[orient - 1], texX, texY);
 			if (side == 1)
 				color = add_shade(0.6, color);
-			buffer[y][x] = color;
+			//buffer[y][x] = color;
 			my_mlx_pixel_put(&all->img, x, y, color);
 		}
 	}
-	mlx_put_image_to_window(all->mlx, all->win, texture[0], 0, 0);
 
 	//timing for input and FPS counter
 	oldTime = time;
