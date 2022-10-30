@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 18:03:28 by lprates           #+#    #+#             */
-/*   Updated: 2022/10/29 12:58:06 by lprates          ###   ########.fr       */
+/*   Updated: 2022/10/30 22:18:21 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	key_hook_press(int keycode, t_mlx *all)
 		player->movement = ROTL;
 	else
 		return (0);
-	printf("Number of movements: %i\n movement code: %i\n", ++mov, player->movement);
 	return (1);
 }
 

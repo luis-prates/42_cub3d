@@ -24,7 +24,6 @@
 # include <math.h>
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
-# include <sys/time.h>
 # include <mlx.h>
 
 // defines input key codes
@@ -47,14 +46,20 @@ typedef enum e_movement {
 }			t_movement;
 
 // lodev tutorial starts
-# define mapWidth 24
-# define mapHeight 24
-# define screenWidth 640
-# define screenHeight 480
-# define texWidth 64
-# define texHeight 64
+# define MAPWIDTH 24
+# define MAPHEIGHT 24
+# define SCREENWIDTH 640
+# define SCREENHEIGHT 480
+# define TEXWIDTH 64
+# define TEXHEIGHT 64
 
 // lodev tutorial ends
+
+// movement consts
+//the constant value is in squares/second
+# define MOVESPEED 0.025
+//the constant value is in radians/second
+# define ROTSPEED 0.01
 
 typedef struct s_data {
 	void		*img;
@@ -91,6 +96,15 @@ typedef struct s_draw
 	int		map_y;
 	int		step_x;
 	int		step_y;
+	double	tex_pos;
+	int		tex_x;
+	int		tex_y;
+	int		side;
+	double	step;
+	double	wall_x;
+	int		line_height;
+	int		orient;
+	int		hit; //was there a wall hit?
 }		t_draw;
 
 typedef struct s_color
@@ -149,9 +163,46 @@ int			window_close(t_mlx *all, int code);
 int			key_hook_press(int keycode, t_mlx *all);
 int			key_hook_release(int keycode, t_mlx *all);
 
+// movement
+void		player_movement(t_player *player);
+
+// draw
+void		draw_textures(t_mlx *all, int x, t_data *texture_image);
+void		setup_rays(t_draw *draw, t_player *player);
+void		do_dda(t_draw *draw);
+void		setup_walls(t_draw *draw, t_player *player);
+
 // singletons
 t_player	*player_singleton(t_player *set_player);
 t_mlx		*mlx_singleton(t_mlx *set_mlx);
 t_map		*map_singleton(t_map *set_map);
+
+static int worldMap[MAPWIDTH][MAPHEIGHT]=
+{
+  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+};
 
 #endif
