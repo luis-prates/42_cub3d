@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 17:37:54 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/15 17:15:52 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/07 12:57:42 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,24 @@
  */
 # define GAME_TITLE	"WIP"
 
+# define MAPWIDTH 24
+# define MAPHEIGHT 24
+# define SCREENWIDTH 640
+# define SCREENHEIGHT 480
+# define TEXWIDTH 64
+# define TEXHEIGHT 64
+
 # define MAP_FLOOR	'0'
 # define MAP_WALL	'1'
 # define MAP_NORTH	'N'
 # define MAP_SOUTH	'S'
 # define MAP_WEST	'W'
 # define MAP_EAST	'E'
+
+// movement consts
+//the constant value is in squares/second
+# define MOVESPEED 0.025
+//the constant value is in radians/second
+# define ROTSPEED 0.01
 
 #endif

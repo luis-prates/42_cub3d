@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+         #
+#    By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 18:49:28 by tosilva           #+#    #+#              #
-#    Updated: 2022/10/16 13:10:37 by tosilva          ###   ########.fr        #
+#    Updated: 2022/11/07 12:57:39 by lprates          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,31 +45,61 @@ LIBMLX_FILE	= libmlx.a
 LIBMLX		:= ${addprefix $(LIBMLX_DIR), $(LIBMLX_FILE)}
 
 
+# FOLDERS
+COLOURS_DIR	= colours/
+MLX_DIR		= mlx/
+PARSER_DIR	= parser/
+GAME_DIR	= game/
+MINIMAP_DIR	= minimap/
+DRAW_DIR	= draw/
+
+ALL_DIRS	:= $(COLOURS_DIR) $(MLX_DIR) $(PARSER_DIR) $(GAME_DIR) $(MINIMAP_DIR) $(DRAW_DIR)
+
 # FILES
 HFILES	:= colours.h \
 			constants.h \
 			data.h \
 			cub3d.h
+CFILES	:= main.c \
+			singletons.c
 
-CFILES	:= colours.c \
-			colours_utils.c \
-			mlx_images.c \
-			mlx_utils.c \
-			parser.c \
-			parser_utils_1.c \
-			parser_utils_2.c \
-			parser_colour.c \
-			parser_map.c \
-			parser_map_utils_1.c \
-			parser_map_utils_2.c \
-			parser_texture.c \
-			singletons.c \
-			main.c
+COLOURS_FILES	= colours.c \
+					colours_utils.c
+MLX_FILES 		= mlx_images.c \
+					mlx_utils.c
+DRAW_FILES		= draw.c \
+					draw_utils.c
+PARSER_FILES	= parser.c \
+					parser_utils_1.c \
+					parser_utils_2.c \
+					parser_colour.c \
+					parser_map.c \
+					parser_map_utils_1.c \
+					parser_map_utils_2.c \
+					parser_texture.c
+GAME_FILES		= game.c \
+					hooks.c \
+					hooks_utils.c \
+					movement.c
+MINIMAP_FILES	=
+			
 
-INC	:= ${foreach file, $(INC_DIR), ${addprefix $(INC_DIR), $(HFILES)}}
-SRC	:= ${foreach file, $(SRC_DIR), ${addprefix $(SRC_DIR), $(CFILES)}}
-OBJ	:= ${subst $(SRC_DIR), $(OBJ_DIR), $(SRC:.c=.o)}
-DEP	:= ${subst $(SRC_DIR), $(DEP_DIR), $(SRC:.c=.d)}
+# FILES AND THEIR FOLDERS
+HFILES_SRC	:= ${foreach file, $(INC_DIR), ${addprefix $(INC_DIR), $(HFILES)}}
+CFILES_SRC	:= ${foreach file, $(SRC_DIR), ${addprefix $(SRC_DIR), $(CFILES)}}
+
+COLOURS_SRC		:= ${foreach file, $(COLOURS_DIR), ${addprefix $(SRC_DIR)$(COLOURS_DIR), $(COLOURS_FILES)}}
+MLX_SRC			:= ${foreach file, $(MLX_DIR), ${addprefix $(SRC_DIR)$(MLX_DIR), $(MLX_FILES)}}
+PARSER_SRC		:= ${foreach file, $(PARSER_DIR), ${addprefix $(SRC_DIR)$(PARSER_DIR), $(PARSER_FILES)}}
+DRAW_SRC		:= ${foreach file, $(DRAW_DIR), ${addprefix $(SRC_DIR)$(DRAW_DIR), $(DRAW_FILES)}}
+GAME_SRC		:= ${foreach file, $(GAME_DIR), ${addprefix $(SRC_DIR)$(GAME_DIR), $(GAME_FILES)}}
+MINIMAP_SRC		:= ${foreach file, $(MINIMAP_DIR), ${addprefix $(SRC_DIR)$(MINIMAP_DIR), $(MINIMAP_FILES)}}
+
+INCS	:= $(HFILES_SRC)
+SRCS	:= $(CFILES_SRC)
+SRCS	+= $(COLOURS_SRC) $(MLX_SRC) $(PARSER_SRC) $(DRAW_SRC) $(GAME_SRC) $(MINIMAP_SRC)
+OBJS	:= ${subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o)}
+DEPS	:= ${subst $(SRC_DIR), $(DEP_DIR), $(SRCS:.c=.d)}
 
 
 ########################################
@@ -95,7 +125,7 @@ CL_NORM_NUM		:=$(COLORF_CYAN)
 ########################################
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra # -03
+CFLAGS		= #-Wall -Werror -Wextra # -03
 DEBFLAGS	= -g -fsanitize=address
 INCFLAGS	:= -I./$(LIBFT_DIR)$(INC_DIR) -I./$(LIBMLX_DIR) -I./$(INC_DIR)
 LIBFLAGS	:= -L./$(LIBFT_DIR)$(BIN_DIR) -lft -L./$(LIBMLX_DIR) -lmlx -L/usr/lib -lbsd -lXext -lX11 -lm -lz
@@ -142,14 +172,14 @@ libmlx $(LIBMLX): | $(LIBMLX_DIR)
 
 target: msg_compiling $(NAME) msg_created
 
-$(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
+$(NAME): $(LIBFT) $(LIBMLX) $(OBJS)
 	@$(CC) $(CFLAGS) $(PKGFLAGS) $(INCFLAGS) $^ $(LIBFLAGS) -o $@
 
-$(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(DEP_DIR)%.d | $(OBJ_DIR)
+$(OBJS): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(DEP_DIR)%.d | ${foreach dir, $(OBJ_DIR), ${addprefix $(OBJ_DIR), $(ALL_DIRS)}}
 	@$(CC) $(CFLAGS) $(INCFLAGS) -c $< -o $@
 	@echo "⬜\c"
 
-$(DEP): $(DEP_DIR)%.d: $(SRC_DIR)%.c $(LIBFT) $(LIBMLX) | $(DEP_DIR)
+$(DEPS): $(DEP_DIR)%.d: $(SRC_DIR)%.c $(LIBFT) $(LIBMLX) | ${foreach dir, $(DEP_DIR), ${addprefix $(DEP_DIR), $(ALL_DIRS)}}
 	@$(CC) $(CFLAGS) $(INCFLAGS) -M \
 		-MT '${patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$<} \
 			${patsubst $(SRC_DIR)%.c,$(DEP_DIR)%.d,$<}' $< \
@@ -176,6 +206,11 @@ debug_libft:
 $(OBJ_DIR) $(DEP_DIR):
 	@$(MKDIR) $@
 
+${foreach dir, $(OBJ_DIR), ${addprefix $(OBJ_DIR), $(ALL_DIRS)}}: | $(OBJ_DIR)
+	@$(MKDIR) $@
+
+${foreach dir, $(DEP_DIR), ${addprefix $(DEP_DIR), $(ALL_DIRS)}}: | $(DEP_DIR)
+	@$(MKDIR) $@
 
 ########################################
 ## Norm								  ##
@@ -185,10 +220,10 @@ norm:
 	@echo "[ .. ] Norminette [ .. ]"
 	@echo
 	@echo "▱▱▱▱▱ HEADERS ▱▱▱▱▱"
-	@$(NORM) $(INC) | $(NORM_COLORS)
+	@$(NORM) $(INCS) | $(NORM_COLORS)
 	@echo
 	@echo "▱▱▱▱▱ SOURCES  ▱▱▱▱▱"
-	@$(NORM) $(SRC) | $(NORM_COLORS)
+	@$(NORM) $(SRCS) | $(NORM_COLORS)
 	@echo
 
 norm_libft:

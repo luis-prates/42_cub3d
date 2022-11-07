@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 12:31:49 by lprates           #+#    #+#             */
-/*   Updated: 2022/10/16 13:20:06 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/07 12:57:47 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,21 @@ t_bool			convert_colour(t_identifier const type, char const *line);
 t_bool			convert_map(int const fd, char const *line);
 
 t_bool			parse_map(char const *filename);
+
+/* GAME */
+t_bool			start_game();
+
+void 			create_hooks(void);
+t_bool			is_movement(int keycode);
+void			save_movement(int keycode);
+
+/* DRAW (lprates) */
+void			setup_rays(t_draw *draw, t_player *player);
+void			setup_walls(t_draw *draw, t_player *player);
+void			do_dda(t_draw *draw, t_map *map);
+int				my_get_image_pixel(t_mlximage *data, int x, int y);
+void			draw_walls(t_mlx *mlx, int x, t_draw *draw);
+void			draw_background(t_mlx *mlx, int x);
+void			player_movement(t_player *player);
 
 #endif

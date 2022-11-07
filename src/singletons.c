@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:15:57 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/16 13:21:59 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/07 12:58:44 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	init_singletons(void)
 
 	mlx = get_mlx_singleton();
 	mlx->connection = new_mlx_connection();
+	mlx->window = new_mlx_window(SCREENWIDTH, SCREENHEIGHT, GAME_TITLE);
 	map = get_map_singleton();
 	ft_bzero((void *)map, sizeof(t_map));
 	map->colours.celling = -1;
