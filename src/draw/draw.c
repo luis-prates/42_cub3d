@@ -5,32 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 20:09:19 by lprates           #+#    #+#             */
-/*   Updated: 2022/10/30 22:04:43 by lprates          ###   ########.fr       */
+/*   Created: 2022/11/03 00:13:06 by lprates           #+#    #+#             */
+/*   Updated: 2022/11/03 00:52:11 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // send floor and ceiling colors
-void	draw_background(t_mlx *all, int x)
+void	draw_background(t_mlx *mlx, int x)
 {
 	size_t	j;
+	t_map	*map;
 
+	map = get_map_singleton();
 	j = -1;
 	while (++j < SCREENHEIGHT)
 	{
-		if (!my_get_image_pixel(&all->img, x, j))
+		if (!my_get_image_pixel(&mlx->screen, x, j))
 		{
 			if (j < SCREENHEIGHT / 2)
-				my_mlx_pixel_put(&all->img, x, j, create_trgb(0, 0, 255, 0));
+				pixel_mlx_image_put(&mlx->screen, x, j, map->colours.celling);
 			if (j > SCREENHEIGHT / 2)
-				my_mlx_pixel_put(&all->img, x, j, create_trgb(0, 0, 255, 255));
+				pixel_mlx_image_put(&mlx->screen, x, j, map->colours.floor);
 		}
 	}
 }
 
-void	draw_walls(t_mlx *all, int x, t_draw *draw, t_data *texture_image)
+void	draw_walls(t_mlx *mlx, int x, t_draw *draw)
 {
 	int		color;
 	int		y;
@@ -44,27 +46,12 @@ void	draw_walls(t_mlx *all, int x, t_draw *draw, t_data *texture_image)
 		draw->tex_y = (int)draw->tex_pos & (TEXHEIGHT - 1);
 		draw->tex_pos += draw->step;
 		color = my_get_image_pixel(
-				&texture_image[draw->orient - 1],
+				&draw->wall_texture,
 				draw->tex_x,
 				draw->tex_y
 				);
 		if (draw->side == 1)
 			color = add_shade(0.6, color);
-		my_mlx_pixel_put(&all->img, x, y, color);
+		pixel_mlx_image_put(&mlx->screen, x, y, color);
 	}
-}
-
-void	draw_textures(t_mlx *all, int x, t_data *texture_image)
-{
-	t_draw		*draw;
-	t_player	*player;
-
-	player = player_singleton(NULL);
-	draw = malloc(sizeof(t_draw));
-	draw->camera_x = 2 * x / (double) SCREENWIDTH - 1;
-	setup_rays(draw, player);
-	do_dda(draw);
-	setup_walls(draw, player);
-	draw_walls(all, x, draw, texture_image);
-	draw_background(all, x);
 }
