@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:51:57 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/16 13:05:28 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/07 17:01:54 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,11 @@ static t_bool	split_string_to_major_colours(char const *str,
 		*r = ft_atoi(colours[0]);
 		*g = ft_atoi(colours[1]);
 		*b = ft_atoi(colours[2]);
-		ret = ft_ternchar(is_major_colour(*r) && is_major_colour(*g)
-				&& is_major_colour(*b), TRUE, FALSE);
+		ret = is_major_colour(*r);
+		ret &= is_major_colour(*g);
+		ret &= is_major_colour(*b);
+		// ret = ft_ternchar(is_major_colour(*r) && is_major_colour(*g)
+		// 		&& is_major_colour(*b), TRUE, FALSE);
 	}
 	ft_freemtx((void ***)&colours);
 	return (ret);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 17:46:40 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/03 23:52:45 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/07 17:12:37 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_bool	start_game()
 
 	mlx = get_mlx_singleton();
 	create_hooks();
-	
+
 
 	// TODO DELETE
 	t_map *map = get_map_singleton();
@@ -83,6 +83,6 @@ t_bool	start_game()
 	}
 
 	mlx_loop_hook(mlx->connection, render_next_frame, mlx);
-	mlx_loop(mlx->connection);
+	//mlx_loop(mlx->connection);
 	return (TRUE);
 }

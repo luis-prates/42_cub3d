@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 16:20:43 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/08 03:32:18 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/07 17:02:36 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,17 @@ void	free_mlx_window(void **mlx_window)
 {
 	t_mlx	*mlx;
 
-	mlx = get_mlx_singleton();
-	if (mlx->connection)
+	if (mlx_window && *mlx_window)
 	{
-		if (mlx_window && *mlx_window)
+		mlx = get_mlx_singleton();
+		if (mlx->connection)
+		{
 			mlx_destroy_window(mlx->connection, *mlx_window);
-		*mlx_window = NULL;
+			*mlx_window = NULL;
+		}
+		else
+		{
+			ft_strerror(NULL_ADDRESS, NULL_MLX_CONNECTION_ERROR);
+		}
 	}
-	// else
-	// {
-	// 	ft_strerror(NULL_ADDRESS, NULL_MLX_CONNECTION_ERROR);
-	// }
 }

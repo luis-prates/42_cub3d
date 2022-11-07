@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosilva <tosilva@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 18:15:25 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/29 19:40:08 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/07 17:06:04 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 		init_singletons();
 		if (parse_map(argv[1]))
 		{
-			if (start_game()) // start game
+			if (start_game())
 				ret = EXIT_SUCCESS;
 		}
 		free_singletons();

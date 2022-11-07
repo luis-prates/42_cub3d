@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 21:57:55 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/16 12:57:38 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/07 17:02:15 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,19 @@ void	free_mlximage(t_mlximage *image)
 {
 	t_mlx	*mlx;
 
-	mlx = get_mlx_singleton();
-	if (mlx->connection)
+	if (image->img)
 	{
-		if (image->img)
+		mlx = get_mlx_singleton();
+		if (mlx->connection)
+		{
 			mlx_destroy_image(mlx->connection, image->img);
-		ft_bzero((void *)image, sizeof(t_mlximage));
+			ft_bzero((void *)image, sizeof(t_mlximage));
+		}
+		else
+		{
+			ft_strerror(NULL_ADDRESS, NULL_MLX_CONNECTION_ERROR);
+		}
 	}
-	// else
-	// {
-	// 	ft_strerror(NULL_ADDRESS, NULL_MLX_CONNECTION_ERROR);
-	// }
 }
 
 t_mlximage	free_and_xpm_to_mlx_image(t_mlximage *image, char const *file)

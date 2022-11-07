@@ -56,9 +56,14 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+## Editor
+.vs/
+.vscode/
+*~
+\#*\#
+
 # Others
 .DS_Store
-.vscode/
-.vs/
-lib/mlx_linux/
+*Makefile.gen
+*mlx-test
 cub3D
