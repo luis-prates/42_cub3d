@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 17:37:54 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/03 23:52:11 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/07 17:39:55 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@
 
 # define MAPWIDTH 24
 # define MAPHEIGHT 24
-# define SCREENWIDTH 640
-# define SCREENHEIGHT 480
+# define SCREEN_WIDTH 640
+# define SCREEN_HEIGHT 480
 # define TEXWIDTH 64
 # define TEXHEIGHT 64
 

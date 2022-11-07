@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 00:05:56 by lprates           #+#    #+#             */
-/*   Updated: 2022/11/04 00:15:07 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/07 17:39:24 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ void	setup_walls(t_draw *draw, t_player *player)
 		draw->perp_wall_dist = (draw->side_dist_x - draw->delta_dist_x);
 	else
 		draw->perp_wall_dist = (draw->side_dist_y - draw->delta_dist_y);
-	draw->line_height = (int)(SCREENHEIGHT / draw->perp_wall_dist);
-	draw->draw_start = -draw->line_height / 2 + SCREENHEIGHT / 2;
+	draw->line_height = (int)(SCREEN_HEIGHT / draw->perp_wall_dist);
+	draw->draw_start = -draw->line_height / 2 + SCREEN_HEIGHT / 2;
 	if (draw->draw_start < 0)
 		draw->draw_start = 0;
-	draw->draw_end = draw->line_height / 2 + SCREENHEIGHT / 2;
-	if (draw->draw_end >= SCREENHEIGHT)
-		draw->draw_end = SCREENHEIGHT - 1;
+	draw->draw_end = draw->line_height / 2 + SCREEN_HEIGHT / 2;
+	if (draw->draw_end >= SCREEN_HEIGHT)
+		draw->draw_end = SCREEN_HEIGHT - 1;
 	if (draw->side == 0)
 		draw->wall_x = player->pos.y + draw->perp_wall_dist * draw->ray_dir_y;
 	else
@@ -75,7 +75,7 @@ void	setup_walls(t_draw *draw, t_player *player)
 		draw->tex_x = TEXWIDTH - draw->tex_x - 1;
 	draw->step = 1.0 * TEXHEIGHT / draw->line_height;
 	draw->tex_pos = draw->step * \
-		(draw->draw_start - SCREENHEIGHT / 2 + draw->line_height / 2);
+		(draw->draw_start - SCREEN_HEIGHT / 2 + draw->line_height / 2);
 }
 
 void	setup_rays(t_draw *draw, t_player *player)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 23:38:48 by lprates           #+#    #+#             */
-/*   Updated: 2022/11/07 12:13:50 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/07 18:03:16 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,15 @@ static void	rotate_player(t_player *player)
 		+ player->plane.y * cos(reverse * ROTSPEED);
 }
 
-void	player_movement(t_player *player)
+void	handle_player_movement(void)
 {
+	t_player	*player;
+
+	player = get_player_singleton();
 	if (player->movement == FORWARD || player->movement == BACKWARDS)
 		move_player(player);
-	if (player->movement == STRAFE_L || player->movement == STRAFE_R)
+	else if (player->movement == STRAFE_L || player->movement == STRAFE_R)
 		strafe_player(player);
-	if (player->movement == ROTATE_L || player->movement == ROTATE_R)
+	else if (player->movement == ROTATE_L || player->movement == ROTATE_R)
 		rotate_player(player);
 }

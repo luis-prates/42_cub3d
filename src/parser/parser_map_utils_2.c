@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_map_utils_2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 03:35:53 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/07 12:14:22 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/07 20:59:40 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ static void	save_player_position_n_direction(int pos_x, int pos_y, char dir)
 		player->dir.y = 0;
 		player->dir.x = -1 + (dir == MAP_SOUTH) * 2;
 		player->plane.x = 0;
-		player->plane.y = 0.66 + (dir == MAP_SOUTH) * -1 * 1.33;
+		player->plane.y = 0.66 + (dir == MAP_SOUTH) * -1 * 1.32;
 	}
 	else if (dir == MAP_WEST || dir == MAP_EAST)
 	{
 		player->dir.y = -1 + (dir == MAP_EAST) * 2;
 		player->dir.x = 0;
-		player->plane.x = -0.66 + (dir == MAP_EAST) * 1.33;
+		player->plane.x = -0.66 + (dir == MAP_EAST) * 1.32;
 		player->plane.y = 0;
 	}
 }
