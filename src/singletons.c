@@ -41,7 +41,6 @@ void	init_singletons(void)
 
 	mlx = get_mlx_singleton();
 	mlx->connection = new_mlx_connection();
-	mlx->window = new_mlx_window(SCREEN_WIDTH, SCREEN_HEIGHT, GAME_TITLE);
 	map = get_map_singleton();
 	ft_bzero((void *)map, sizeof(t_map));
 	map->colours.celling = -1;

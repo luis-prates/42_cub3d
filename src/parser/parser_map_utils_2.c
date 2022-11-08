@@ -43,41 +43,43 @@ static t_bool	alloc_map_memory(void)
 // Is it worth changing??
 static t_bool	save_player_pos_n_dir(int pos_x, int pos_y, char dir)
 {
+	t_bool		ret;
 	t_player	*player;
 
+	ret = FALSE;
 	player = get_player_singleton();
-	if (player->exists == TRUE)
-		return (FALSE);
-	player->pos.x = pos_y;
-	player->pos.y = pos_x;
-	player->exists = TRUE;
-	if (dir == MAP_NORTH || dir == MAP_SOUTH)
+	if (player->exists == FALSE)
 	{
-		player->dir.y = 0;
-		player->dir.x = -1 + (dir == MAP_SOUTH) * 2;
-		player->plane.x = 0;
-		player->plane.y = 0.66 + (dir == MAP_SOUTH) * -1 * 1.32;
+		player->exists = TRUE;
+		player->pos.x = pos_y;
+		player->pos.y = pos_x;
+		if (dir == MAP_NORTH || dir == MAP_SOUTH)
+		{
+			player->dir.x = -1 + (dir == MAP_SOUTH) * 2;
+			player->plane.y = 0.66 + (dir == MAP_SOUTH) * -1 * 1.32;
+		}
+		else if (dir == MAP_WEST || dir == MAP_EAST)
+		{
+			player->dir.y = -1 + (dir == MAP_EAST) * 2;
+			player->plane.x = -0.66 + (dir == MAP_EAST) * 1.32;
+		}
+		ret = TRUE;
 	}
-	else if (dir == MAP_WEST || dir == MAP_EAST)
-	{
-		player->dir.y = -1 + (dir == MAP_EAST) * 2;
-		player->dir.x = 0;
-		player->plane.x = -0.66 + (dir == MAP_EAST) * 1.32;
-		player->plane.y = 0;
-	}
-	return (TRUE);
+	else
+		ft_strerror(BAD_INPUT, MORE_THAN_ONE_PLAYER_GIVEN);
+	return (ret);
 }
 
 static t_bool	line_to_int_array(char const *line, int *dest, int const pos_y)
 {
+	t_bool	ret;
 	size_t	line_idx;
 	size_t	dest_idx;
-	t_bool	ret;
 
+	ret = TRUE;
 	line_idx = 0;
 	dest_idx = 0;
-	ret = TRUE;
-	while (line[line_idx])
+	while (line[line_idx] && ret == TRUE)
 	{
 		if (line[line_idx] == MAP_WALL)
 			dest[dest_idx] = 1;
@@ -85,11 +87,6 @@ static t_bool	line_to_int_array(char const *line, int *dest, int const pos_y)
 			dest_idx += 3;
 		else if (is_player_character(line[line_idx]))
 			ret = save_player_pos_n_dir(dest_idx, pos_y, line[line_idx]);
-		if (ret == FALSE)
-		{
-			ft_strerror(BAD_INPUT, MORE_THAN_ONE_PLAYER_GIVEN);
-			return (ret);
-		}
 		dest_idx++;
 		line_idx++;
 	}

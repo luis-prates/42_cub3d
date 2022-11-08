@@ -18,6 +18,7 @@ t_bool	start_game(void)
 	t_mlx	*mlx;
 
 	mlx = get_mlx_singleton();
+	mlx->window = new_mlx_window(SCREEN_WIDTH, SCREEN_HEIGHT, GAME_TITLE);
 	create_hooks();
 	mlx_loop(mlx->connection);
 	return (TRUE);
