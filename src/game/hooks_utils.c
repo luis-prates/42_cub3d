@@ -56,7 +56,8 @@ void	draw_textures(int x)
 	mlx = get_mlx_singleton();
 	player = get_player_singleton();
 	map = get_map_singleton();
-	draw.camera_x = 2 * x / (double) SCREEN_WIDTH - 1;
+	ft_bzero((void *)&draw, sizeof(t_draw));
+	draw.camera_x = (2 * x / (double)SCREEN_WIDTH) - 1;
 	setup_rays(&draw, player);
 	do_dda(&draw, map);
 	setup_walls(&draw, player);

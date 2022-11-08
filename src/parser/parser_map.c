@@ -76,11 +76,18 @@ static t_bool	check_n_get_map_size(int const fd, char const *first_line)
 t_bool	convert_map(int const fd, char const *line)
 {
 	t_bool		ret;
+	t_player	*player;
 
 	ret = FALSE;
+	player = get_player_singleton();
 	if (check_n_get_map_size(fd, line))
 	{
 		ret = fill_map(line);
+		if (ret == TRUE && player->exists == FALSE)
+		{
+			ft_strerror(INVALID_ARGUMENT, MISSING_PLAYER);
+			ret = FALSE;
+		}
 	}
 	return (ret);
 }

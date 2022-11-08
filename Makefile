@@ -46,29 +46,32 @@ LIBMLX		:= ${addprefix $(LIBMLX_DIR), $(LIBMLX_FILE)}
 
 
 # FOLDERS
-COLOURS_DIR	= colours/
-MLX_DIR		= mlx/
-PARSER_DIR	= parser/
-GAME_DIR	= game/
-MINIMAP_DIR	= minimap/
-DRAW_DIR	= draw/
+COLOURS_DIR		= colours/
+DRAW_DIR		= draw/
+GAME_DIR		= game/
+MLX_DIR			= mlx/
+PARSER_DIR		= parser/
+SINGLETON_DIR	= singleton/
 
-ALL_DIRS	:= $(COLOURS_DIR) $(MLX_DIR) $(PARSER_DIR) $(GAME_DIR) $(MINIMAP_DIR) $(DRAW_DIR)
+ALL_DIRS	:= $(COLOURS_DIR) $(DRAW_DIR) $(GAME_DIR) $(MLX_DIR) $(PARSER_DIR) $(SINGLETON_DIR)
 
 # FILES
 HFILES	:= colours.h \
 			constants.h \
 			data.h \
 			cub3d.h
-CFILES	:= main.c \
-			singletons.c
+CFILES	:= main.c
 
 COLOURS_FILES	= colours.c \
 					colours_utils.c
-MLX_FILES 		= mlx_images.c \
-					mlx_utils.c
 DRAW_FILES		= draw.c \
 					draw_utils.c
+GAME_FILES		= game.c \
+					hooks.c \
+					hooks_utils.c \
+					movement.c
+MLX_FILES 		= mlx_images.c \
+					mlx_utils.c
 PARSER_FILES	= parser.c \
 					parser_utils_1.c \
 					parser_utils_2.c \
@@ -77,27 +80,22 @@ PARSER_FILES	= parser.c \
 					parser_map_utils_1.c \
 					parser_map_utils_2.c \
 					parser_texture.c
-GAME_FILES		= game.c \
-					hooks.c \
-					hooks_utils.c \
-					movement.c
-MINIMAP_FILES	=
-			
+SINGLETON_FILES	= singletons.c
 
 # FILES AND THEIR FOLDERS
 HFILES_SRC	:= ${foreach file, $(INC_DIR), ${addprefix $(INC_DIR), $(HFILES)}}
 CFILES_SRC	:= ${foreach file, $(SRC_DIR), ${addprefix $(SRC_DIR), $(CFILES)}}
 
 COLOURS_SRC		:= ${foreach file, $(COLOURS_DIR), ${addprefix $(SRC_DIR)$(COLOURS_DIR), $(COLOURS_FILES)}}
-MLX_SRC			:= ${foreach file, $(MLX_DIR), ${addprefix $(SRC_DIR)$(MLX_DIR), $(MLX_FILES)}}
-PARSER_SRC		:= ${foreach file, $(PARSER_DIR), ${addprefix $(SRC_DIR)$(PARSER_DIR), $(PARSER_FILES)}}
 DRAW_SRC		:= ${foreach file, $(DRAW_DIR), ${addprefix $(SRC_DIR)$(DRAW_DIR), $(DRAW_FILES)}}
 GAME_SRC		:= ${foreach file, $(GAME_DIR), ${addprefix $(SRC_DIR)$(GAME_DIR), $(GAME_FILES)}}
-MINIMAP_SRC		:= ${foreach file, $(MINIMAP_DIR), ${addprefix $(SRC_DIR)$(MINIMAP_DIR), $(MINIMAP_FILES)}}
+MLX_SRC			:= ${foreach file, $(MLX_DIR), ${addprefix $(SRC_DIR)$(MLX_DIR), $(MLX_FILES)}}
+PARSER_SRC		:= ${foreach file, $(PARSER_DIR), ${addprefix $(SRC_DIR)$(PARSER_DIR), $(PARSER_FILES)}}
+SINGLETON_SRC		:= ${foreach file, $(SINGLETON_DIR), ${addprefix $(SRC_DIR)$(SINGLETON_DIR), $(SINGLETON_FILES)}}
 
 INCS	:= $(HFILES_SRC)
 SRCS	:= $(CFILES_SRC)
-SRCS	+= $(COLOURS_SRC) $(MLX_SRC) $(PARSER_SRC) $(DRAW_SRC) $(GAME_SRC) $(MINIMAP_SRC)
+SRCS	+= $(COLOURS_SRC) $(DRAW_SRC) $(GAME_SRC) $(MLX_SRC) $(PARSER_SRC) $(SINGLETON_SRC)
 OBJS	:= ${subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o)}
 DEPS	:= ${subst $(SRC_DIR), $(DEP_DIR), $(SRCS:.c=.d)}
 

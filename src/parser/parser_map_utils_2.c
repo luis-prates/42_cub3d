@@ -36,11 +36,6 @@ static t_bool	alloc_map_memory(void)
 	return (ret);
 }
 
-// can be with reverse var as used in oher function
-// this was just to test
-// for some reason the positions have to be reversed,
-// same as the dir's. Most likely from math being done.
-// Is it worth changing??
 static t_bool	save_player_pos_n_dir(int pos_x, int pos_y, char dir)
 {
 	t_bool		ret;
@@ -51,7 +46,7 @@ static t_bool	save_player_pos_n_dir(int pos_x, int pos_y, char dir)
 	if (player->exists == FALSE)
 	{
 		player->exists = TRUE;
-		player->pos.x = pos_y;
+		player->pos.x = pos_y - 1;
 		player->pos.y = pos_x;
 		if (dir == MAP_NORTH || dir == MAP_SOUTH)
 		{
@@ -66,7 +61,7 @@ static t_bool	save_player_pos_n_dir(int pos_x, int pos_y, char dir)
 		ret = TRUE;
 	}
 	else
-		ft_strerror(BAD_INPUT, MORE_THAN_ONE_PLAYER_GIVEN);
+		ft_strerror(INVALID_ARGUMENT, MORE_THAN_ONE_PLAYER_GIVEN);
 	return (ret);
 }
 
