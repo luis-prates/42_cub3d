@@ -23,7 +23,7 @@ static t_bool	gap_found(char const c1, char const c2)
 }
 
 static t_bool
-	is_map_closed(char const *line_before, char const *line, size_t const idx)
+	is_map_closed(char const *line_before, char const *line, size_t idx)
 {
 	t_bool	ret;
 
@@ -33,6 +33,12 @@ static t_bool
 	{
 		if (gap_found(' ', line[idx]))
 			ret = FALSE;
+		if (!line[idx + 1] && line_before && ft_strlen(line_before) - 1 >= idx)
+		{
+			while (line_before[idx] && ret != FALSE)
+				if (gap_found(line_before[idx++], ' '))
+					ret = FALSE;
+		}
 	}
 	else if (gap_found(line[idx - 1], line[idx])
 		|| gap_found(line_before[idx - 1], line[idx])

@@ -14,8 +14,8 @@
 
 static int	on_next_frame(void *p)
 {
-	t_mlx		*mlx;
-	int			x;
+	t_mlx	*mlx;
+	int		x;
 
 	(void) p;
 	mlx = get_mlx_singleton();
@@ -45,7 +45,7 @@ static int	on_close(void *p)
 static int	on_focus(void *p)
 {
 	p = (void *)p;
-	on_next_frame(NULL); // TODO Needed ?
+	//on_next_frame(NULL); // TODO Needed ?
 	return (TRUE);
 }
 
@@ -88,8 +88,8 @@ void create_hooks(void)
 	mlx_loop_hook(mlx->connection, on_next_frame, NULL);
 	mlx_hook(mlx->window, KEY_PRESS, KEY_PRESS_MASK, on_key_press, NULL);
 	mlx_hook(mlx->window, KEY_RELEASE, KEY_RELEASE_MASK, on_key_release, NULL);
-	mlx_hook(mlx->window, DESTROY_NOTIFY, \
+	mlx_hook(mlx->window, DESTROY_NOTIFY,
 			STRUCTURE_NOTIFY_MASK, on_close, NULL);
-	mlx_hook(mlx->window, VISIBILITY_NOTIFY, \
+	mlx_hook(mlx->window, VISIBILITY_NOTIFY,
 			VISIBILITY_CHANGE_MASK, on_focus, NULL);
 }

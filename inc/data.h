@@ -72,29 +72,23 @@ typedef struct s_mlx
 
 typedef struct s_draw
 {
-	int		draw_start;
-	int		draw_end;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	perp_wall_dist;
-	double	camera_x;
-	int		map_x;
-	int		map_y;
-	int		step_x;
-	int		step_y;
-	double	tex_pos;
-	int		tex_x;
-	int		tex_y;
-	int		side;
-	double	step;
-	double	wall_x;
-	int		line_height;
+	int			draw_start;
+	int			draw_end;
+	t_fpoint	ray_dir;
+	t_fpoint	side_dist;
+	t_fpoint	delta_dist;
+	double		perp_wall_dist;
+	double		camera_x;
+	t_point		map_idx;
+	double		step;
+	t_point		step_idx;
+	double		tex_pos;
+	t_point		tex_idx;
+	int			side;
+	double		wall_x;
+	int			line_height;
 	t_mlximage	wall_texture;
-	int		hit;
+	int			hit;
 }		t_draw;
 
 typedef struct s_textures
@@ -123,11 +117,11 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	t_fpoint		pos;
-	t_fpoint		dir;
-	t_fpoint		plane;
-	t_movement		movement;
-	t_bool			exists;
+	t_fpoint	pos;
+	t_fpoint	dir;
+	t_fpoint	plane;
+	t_movement	movement;
+	t_bool		exists;
 }				t_player;
 
 #endif

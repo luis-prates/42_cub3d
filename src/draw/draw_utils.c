@@ -24,27 +24,27 @@ void	do_dda(t_draw *draw, t_map *map)
 {
 	while (draw->hit == 0)
 	{
-		if (draw->side_dist_x < draw->side_dist_y)
+		if (draw->side_dist.x < draw->side_dist.y)
 		{
-			draw->side_dist_x += draw->delta_dist_x;
-			draw->map_x += draw->step_x;
+			draw->side_dist.x += draw->delta_dist.x;
+			draw->map_idx.x += draw->step_idx.x;
 			draw->side = 0;
-			if (draw->step_x == -1)
+			if (draw->step_idx.x == -1)
 				draw->wall_texture = map->textures.west;
-			else if (draw->step_x == 1)
+			else if (draw->step_idx.x == 1)
 				draw->wall_texture = map->textures.east;
 		}
 		else
 		{
-			draw->side_dist_y += draw->delta_dist_y;
-			draw->map_y += draw->step_y;
-			if (draw->step_y == -1)
+			draw->side_dist.y += draw->delta_dist.y;
+			draw->map_idx.y += draw->step_idx.y;
+			if (draw->step_idx.y == -1)
 				draw->wall_texture = map->textures.north;
-			else if (draw->step_y == 1)
+			else if (draw->step_idx.y == 1)
 				draw->wall_texture = map->textures.south;
 			draw->side = 1;
 		}
-		if (map->map[draw->map_x][draw->map_y] > 0)
+		if (map->map[draw->map_idx.x][draw->map_idx.y] > 0)
 			draw->hit = 1;
 	}
 }
@@ -52,9 +52,9 @@ void	do_dda(t_draw *draw, t_map *map)
 void	setup_walls(t_draw *draw, t_player *player)
 {
 	if (draw->side == 0)
-		draw->perp_wall_dist = (draw->side_dist_x - draw->delta_dist_x);
+		draw->perp_wall_dist = (draw->side_dist.x - draw->delta_dist.x);
 	else
-		draw->perp_wall_dist = (draw->side_dist_y - draw->delta_dist_y);
+		draw->perp_wall_dist = (draw->side_dist.y - draw->delta_dist.y);
 	draw->line_height = (int)(SCREEN_HEIGHT / draw->perp_wall_dist);
 	draw->draw_start = -draw->line_height / 2 + SCREEN_HEIGHT / 2;
 	if (draw->draw_start < 0)
@@ -63,15 +63,15 @@ void	setup_walls(t_draw *draw, t_player *player)
 	if (draw->draw_end >= SCREEN_HEIGHT)
 		draw->draw_end = SCREEN_HEIGHT - 1;
 	if (draw->side == 0)
-		draw->wall_x = player->pos.y + draw->perp_wall_dist * draw->ray_dir_y;
+		draw->wall_x = player->pos.y + draw->perp_wall_dist * draw->ray_dir.y;
 	else
-		draw->wall_x = player->pos.x + draw->perp_wall_dist * draw->ray_dir_x;
+		draw->wall_x = player->pos.x + draw->perp_wall_dist * draw->ray_dir.x;
 	draw->wall_x -= floor(draw->wall_x);
-	draw->tex_x = (int)(draw->wall_x * (double)TEXWIDTH);
-	if (draw->side == 0 && draw->ray_dir_x > 0)
-		draw->tex_x = TEXWIDTH - draw->tex_x - 1;
-	if (draw->side == 1 && draw->ray_dir_y < 0)
-		draw->tex_x = TEXWIDTH - draw->tex_x - 1;
+	draw->tex_idx.x = (int)(draw->wall_x * (double)TEXWIDTH);
+	if (draw->side == 0 && draw->ray_dir.x > 0)
+		draw->tex_idx.x = TEXWIDTH - draw->tex_idx.x - 1;
+	if (draw->side == 1 && draw->ray_dir.y < 0)
+		draw->tex_idx.x = TEXWIDTH - draw->tex_idx.x - 1;
 	draw->step = 1.0 * TEXHEIGHT / draw->line_height;
 	draw->tex_pos = draw->step * \
 		(draw->draw_start - SCREEN_HEIGHT / 2 + draw->line_height / 2);
@@ -79,29 +79,29 @@ void	setup_walls(t_draw *draw, t_player *player)
 
 void	setup_rays(t_draw *draw, t_player *player)
 {
-	draw->ray_dir_x = player->dir.x + player->plane.x * draw->camera_x;
-	draw->ray_dir_y = player->dir.y + player->plane.y * draw->camera_x;
-	draw->map_x = (int) player->pos.x;
-	draw->map_y = (int) player->pos.y;
-	if (draw->ray_dir_x == 0)
-		draw->delta_dist_x = INFINITY;
+	draw->ray_dir.x = player->dir.x + player->plane.x * draw->camera_x;
+	draw->ray_dir.y = player->dir.y + player->plane.y * draw->camera_x;
+	draw->map_idx.x = (int) player->pos.x;
+	draw->map_idx.y = (int) player->pos.y;
+	if (draw->ray_dir.x == 0)
+		draw->delta_dist.x = INFINITY;
 	else
-		draw->delta_dist_x = fabs(1 / draw->ray_dir_x);
-	if (draw->ray_dir_y == 0)
-		draw->delta_dist_y = INFINITY;
+		draw->delta_dist.x = fabs(1 / draw->ray_dir.x);
+	if (draw->ray_dir.y == 0)
+		draw->delta_dist.y = INFINITY;
 	else
-		draw->delta_dist_y = fabs(1 / draw->ray_dir_y);
+		draw->delta_dist.y = fabs(1 / draw->ray_dir.y);
 	draw->hit = 0;
-	if (draw->ray_dir_x < 0)
-		draw->side_dist_x = (player->pos.x - draw->map_x) * draw->delta_dist_x;
+	if (draw->ray_dir.x < 0)
+		draw->side_dist.x = (player->pos.x - draw->map_idx.x) * draw->delta_dist.x;
 	else
-		draw->side_dist_x = (draw->map_x + 1.0 - player->pos.x) \
-			* draw->delta_dist_x;
-	if (draw->ray_dir_y < 0)
-		draw->side_dist_y = (player->pos.y - draw->map_y) * draw->delta_dist_y;
+		draw->side_dist.x = (draw->map_idx.x + 1.0 - player->pos.x) \
+			* draw->delta_dist.x;
+	if (draw->ray_dir.y < 0)
+		draw->side_dist.y = (player->pos.y - draw->map_idx.y) * draw->delta_dist.y;
 	else
-		draw->side_dist_y = (draw->map_y + 1.0 - player->pos.y) \
-			* draw->delta_dist_y;
-	draw->step_x = 1 * round(draw->ray_dir_x / fabs(draw->ray_dir_x));
-	draw->step_y = 1 * round(draw->ray_dir_y / fabs(draw->ray_dir_y));
+		draw->side_dist.y = (draw->map_idx.y + 1.0 - player->pos.y) \
+			* draw->delta_dist.y;
+	draw->step_idx.x = 1 * round(draw->ray_dir.x / fabs(draw->ray_dir.x));
+	draw->step_idx.y = 1 * round(draw->ray_dir.y / fabs(draw->ray_dir.y));
 }

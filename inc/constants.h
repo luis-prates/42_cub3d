@@ -78,6 +78,7 @@
 # define INVALID_COLOUR_DESCRIPTION		"Invalid colour description"
 # define INVALID_MAP_CHARACTER			"Map has an invalid character"
 # define MAP_WALL_INCOMPLETE			"Map wall isn't closed"
+# define MISSING_PLAYER					"The player is missing"
 # define MORE_THAN_ONE_PLAYER_GIVEN		"Only one player char is allowed"
 
 // # define MAP_WITH_MISSING_CHARACTERS	"Map must have C, E, and P characters"

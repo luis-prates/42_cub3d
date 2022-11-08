@@ -12,7 +12,6 @@
 
 #include "cub3d.h"
 
-// send floor and ceiling colors
 void	draw_background(t_mlx *mlx, int x)
 {
 	size_t	j;
@@ -34,8 +33,8 @@ void	draw_background(t_mlx *mlx, int x)
 
 void	draw_walls(t_mlx *mlx, int x, t_draw *draw)
 {
-	int		color;
-	int		y;
+	int	color;
+	int	y;
 
 	draw->step = 1.0 * TEXHEIGHT / draw->line_height;
 	draw->tex_pos = draw->step * \
@@ -43,12 +42,12 @@ void	draw_walls(t_mlx *mlx, int x, t_draw *draw)
 	y = draw->draw_start - 1;
 	while (++y < draw->draw_end)
 	{
-		draw->tex_y = (int)draw->tex_pos & (TEXHEIGHT - 1);
+		draw->tex_idx.y = (int)draw->tex_pos & (TEXHEIGHT - 1);
 		draw->tex_pos += draw->step;
 		color = my_get_image_pixel(
 				&draw->wall_texture,
-				draw->tex_x,
-				draw->tex_y
+				draw->tex_idx.x,
+				draw->tex_idx.y
 				);
 		if (draw->side == 1)
 			color = add_shade(0.6, color);

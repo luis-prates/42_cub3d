@@ -70,13 +70,13 @@ t_bool			convert_map(int const fd, char const *line);
 t_bool			parse_map(char const *filename);
 
 /* GAME */
-t_bool			start_game();
+t_bool			start_game(void);
 
-void 			create_hooks(void);
+void			create_hooks(void);
 t_bool			is_movement(int keycode);
 void			save_movement(int keycode);
 
-/* DRAW (lprates) */
+/* DRAW */
 void			setup_rays(t_draw *draw, t_player *player);
 void			setup_walls(t_draw *draw, t_player *player);
 void			do_dda(t_draw *draw, t_map *map);
