@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 23:38:48 by lprates           #+#    #+#             */
-/*   Updated: 2022/11/07 18:03:16 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/08 00:46:45 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static void	strafe_player(t_player *player)
 	}
 	if (map->map[(int) player->pos.x][map_y] == 0)
 		player->pos.y += reverse * player->dir.x * MOVESPEED;
-	printf("mapX: %i, posX: %f, mapY: %i, posY: %f\n", map_x, player->pos.x, map_y, player->pos.y);
 }
 
 static void	rotate_player(t_player *player)
@@ -58,9 +57,7 @@ static void	rotate_player(t_player *player)
 	double	old_dir_x;
 	double	old_plane_x;
 	int		reverse;
-	t_map	*map;
 
-	map = get_map_singleton();
 	reverse = 1;
 	if (player->movement == ROTATE_R)
 		reverse = -1;

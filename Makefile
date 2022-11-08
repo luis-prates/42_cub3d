@@ -6,7 +6,7 @@
 #    By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 18:49:28 by tosilva           #+#    #+#              #
-#    Updated: 2022/11/03 23:53:47 by lprates          ###   ########.fr        #
+#    Updated: 2022/11/07 21:51:52 by lprates          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,7 +125,7 @@ CL_NORM_NUM		:=$(COLORF_CYAN)
 ########################################
 
 CC			= gcc
-CFLAGS		= #-Wall -Werror -Wextra # -03
+CFLAGS		= -Wall -Werror -Wextra # -03
 DEBFLAGS	= -g -fsanitize=address
 INCFLAGS	:= -I./$(LIBFT_DIR)$(INC_DIR) -I./$(LIBMLX_DIR) -I./$(INC_DIR)
 LIBFLAGS	:= -L./$(LIBFT_DIR)$(BIN_DIR) -lft -L./$(LIBMLX_DIR) -lmlx -L/usr/lib -lbsd -lXext -lX11 -lm -lz

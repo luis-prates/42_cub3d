@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 18:11:34 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/03 23:48:26 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/08 00:41:40 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,22 @@ void	save_movement(int keycode)
 		player->movement = ROTATE_L;
 	else if (keycode == LOOK_RIGHT)
 		player->movement = ROTATE_R;
+}
+
+void	draw_textures(int x)
+{
+	t_mlx		*mlx;
+	t_player	*player;
+	t_map		*map;
+	t_draw		draw;
+
+	mlx = get_mlx_singleton();
+	player = get_player_singleton();
+	map = get_map_singleton();
+	draw.camera_x = 2 * x / (double) SCREEN_WIDTH - 1;
+	setup_rays(&draw, player);
+	do_dda(&draw, map);
+	setup_walls(&draw, player);
+	draw_walls(mlx, x, &draw);
+	draw_background(mlx, x);
 }

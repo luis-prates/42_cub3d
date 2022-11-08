@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:21:53 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/03 23:22:48 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/08 00:17:18 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct s_draw
 	double	step;
 	double	wall_x;
 	int		line_height;
-	t_mlximage		wall_texture;
+	t_mlximage	wall_texture;
 	int		hit;
 }		t_draw;
 
@@ -127,6 +127,7 @@ typedef struct s_player
 	t_fpoint		dir;
 	t_fpoint		plane;
 	t_movement		movement;
+	t_bool			exists;
 }				t_player;
 
 #endif

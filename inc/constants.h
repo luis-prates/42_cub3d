@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 17:37:54 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/07 17:39:55 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/08 00:22:26 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
  */
 # define NO_FILE_OR_DIRECTORY	2
 # define BAD_INPUT				5
-# define TOO_MUCH_ARGUMENTS		7
+# define TOO_MANY_ARGUMENTS		7
 # define BAD_FILE_DESCRIPTOR	9
 # define NULL_ADDRESS			6
 # define ALLOCATION_ERROR		12
@@ -78,6 +78,7 @@
 # define INVALID_COLOUR_DESCRIPTION		"Invalid colour description"
 # define INVALID_MAP_CHARACTER			"Map has an invalid character"
 # define MAP_WALL_INCOMPLETE			"Map wall isn't closed"
+# define MORE_THAN_ONE_PLAYER_GIVEN		"Only one player char is allowed"
 
 // # define MAP_WITH_MISSING_CHARACTERS	"Map must have C, E, and P characters"
 // # define NULL_MAP_ERROR				"No map information provided"

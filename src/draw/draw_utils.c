@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 00:05:56 by lprates           #+#    #+#             */
-/*   Updated: 2022/11/07 17:39:24 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/08 00:37:54 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	my_get_image_pixel(t_mlximage *data, int x, int y)
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	return (*(int *)dst);
 }
-
 
 void	do_dda(t_draw *draw, t_map *map)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 12:31:49 by lprates           #+#    #+#             */
-/*   Updated: 2022/11/07 18:03:58 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/08 00:41:56 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ int				my_get_image_pixel(t_mlximage *data, int x, int y);
 void			draw_walls(t_mlx *mlx, int x, t_draw *draw);
 void			draw_background(t_mlx *mlx, int x);
 void			handle_player_movement(void);
+void			draw_textures(int x);
 
 #endif
