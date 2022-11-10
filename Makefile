@@ -6,7 +6,7 @@
 #    By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 18:49:28 by tosilva           #+#    #+#              #
-#    Updated: 2022/11/10 11:15:35 by tosilva          ###   ########.fr        #
+#    Updated: 2022/11/10 11:37:12 by tosilva          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -306,4 +306,4 @@ msg_deleted:
 ### Includes																 ###
 ################################################################################
 
--include ${shell find . -maxdepth 2 -type f -name '*.d'}
+-include ${shell find . -type f -name '*.d'}
