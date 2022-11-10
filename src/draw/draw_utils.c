@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 00:05:56 by lprates           #+#    #+#             */
-/*   Updated: 2022/11/08 00:37:54 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/10 09:39:10 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ void	setup_walls(t_draw *draw, t_player *player)
 	else
 		draw->wall_x = player->pos.x + draw->perp_wall_dist * draw->ray_dir.x;
 	draw->wall_x -= floor(draw->wall_x);
-	draw->tex_idx.x = (int)(draw->wall_x * (double)TEXWIDTH);
+	draw->tex_idx.x = (int)(draw->wall_x * (double)draw->wall_texture.width);
 	if (draw->side == 0 && draw->ray_dir.x > 0)
-		draw->tex_idx.x = TEXWIDTH - draw->tex_idx.x - 1;
+		draw->tex_idx.x = draw->wall_texture.width - draw->tex_idx.x - 1;
 	if (draw->side == 1 && draw->ray_dir.y < 0)
-		draw->tex_idx.x = TEXWIDTH - draw->tex_idx.x - 1;
-	draw->step = 1.0 * TEXHEIGHT / draw->line_height;
+		draw->tex_idx.x = draw->wall_texture.width - draw->tex_idx.x - 1;
+	draw->step = 1.0 * draw->wall_texture.height / draw->line_height;
 	draw->tex_pos = draw->step * \
 		(draw->draw_start - SCREEN_HEIGHT / 2 + draw->line_height / 2);
 }
