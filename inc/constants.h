@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 17:37:54 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/10 11:00:05 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/09 23:43:53 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,7 @@
 # define MOVE_SPEED 0.025 * (SCREEN_WIDTH / 640)
 //the constant value is in radians/second
 # define ROT_SPEED 0.02 * (SCREEN_WIDTH / 640)
+
+# define UPDOWNROTSPEED 10
 
 #endif

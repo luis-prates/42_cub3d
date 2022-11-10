@@ -56,10 +56,10 @@ void	setup_walls(t_draw *draw, t_player *player)
 	else
 		draw->perp_wall_dist = (draw->side_dist.y - draw->delta_dist.y);
 	draw->line_height = (int)(SCREEN_HEIGHT / draw->perp_wall_dist);
-	draw->draw_start = -draw->line_height / 2 + SCREEN_HEIGHT / 2;
+	draw->draw_start = -draw->line_height / 2 + SCREEN_HEIGHT / 2 + player->updown * UPDOWNROTSPEED;
 	if (draw->draw_start < 0)
 		draw->draw_start = 0;
-	draw->draw_end = draw->line_height / 2 + SCREEN_HEIGHT / 2;
+	draw->draw_end = draw->line_height / 2 + SCREEN_HEIGHT / 2 + player->updown * UPDOWNROTSPEED;
 	if (draw->draw_end >= SCREEN_HEIGHT)
 		draw->draw_end = SCREEN_HEIGHT;
 	if (draw->side == 0)

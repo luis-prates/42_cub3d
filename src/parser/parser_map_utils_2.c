@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 03:35:53 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/08 00:36:28 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/09 22:10:19 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static t_bool	save_player_pos_n_dir(int pos_x, int pos_y, char dir)
 	if (player->exists == FALSE)
 	{
 		player->exists = TRUE;
-		player->pos.x = pos_y - 1;
-		player->pos.y = pos_x;
+		player->pos.x = pos_y + 0.5;
+		player->pos.y = pos_x + 0.5;
 		if (dir == MAP_NORTH || dir == MAP_SOUTH)
 		{
 			player->dir.x = -1 + (dir == MAP_SOUTH) * 2;

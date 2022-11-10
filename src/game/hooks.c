@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 18:11:34 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/10 09:18:57 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/09 22:28:20 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void create_hooks(void)
 	mlx_hook(mlx->window, KEY_PRESS, KEY_PRESS_MASK, on_key_press, NULL);
 	mlx_hook(mlx->window, KEY_RELEASE, KEY_RELEASE_MASK, on_key_release, NULL);
 	mlx_hook(mlx->window, DESTROY_NOTIFY,
-			STRUCTURE_NOTIFY_MASK, on_close, NULL);
+		STRUCTURE_NOTIFY_MASK, on_close, NULL);
 	mlx_hook(mlx->window, VISIBILITY_NOTIFY,
-			VISIBILITY_CHANGE_MASK, on_focus, NULL);
+		VISIBILITY_CHANGE_MASK, on_focus, NULL);
 }

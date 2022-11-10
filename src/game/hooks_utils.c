@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 18:11:34 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/08 00:41:40 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/09 23:41:14 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ t_bool	is_movement(int keycode)
 		|| keycode == MOVE_LEFT
 		|| keycode == MOVE_RIGHT
 		|| keycode == LOOK_LEFT
-		|| keycode == LOOK_RIGHT)
+		|| keycode == LOOK_RIGHT
+		|| keycode == LOOK_UP
+		|| keycode == LOOK_DOWN)
 		ret = TRUE;
 	return (ret);
 }
@@ -44,6 +46,10 @@ void	save_movement(int keycode)
 		player->movement = ROTATE_L;
 	else if (keycode == LOOK_RIGHT)
 		player->movement = ROTATE_R;
+	else if (keycode == LOOK_UP)
+		player->updown++;
+	else if (keycode == LOOK_DOWN)
+		player->updown--;
 }
 
 void	draw_textures(int x)
