@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:21:53 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/08 00:17:18 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/09 23:42:12 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ typedef enum e_movement {
 	STRAFE_L,
 	STRAFE_R,
 	ROTATE_L,
-	ROTATE_R
+	ROTATE_R,
+	ROTATE_U,
+	ROTATE_D
 }			t_movement;
 
 typedef struct s_point
@@ -122,6 +124,7 @@ typedef struct s_player
 	t_fpoint	plane;
 	t_movement	movement;
 	t_bool		exists;
+	double		updown;
 }				t_player;
 
 #endif

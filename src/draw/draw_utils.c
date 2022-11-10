@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 00:05:56 by lprates           #+#    #+#             */
-/*   Updated: 2022/11/08 00:37:54 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/09 23:41:38 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ void	setup_walls(t_draw *draw, t_player *player)
 	else
 		draw->perp_wall_dist = (draw->side_dist.y - draw->delta_dist.y);
 	draw->line_height = (int)(SCREEN_HEIGHT / draw->perp_wall_dist);
-	draw->draw_start = -draw->line_height / 2 + SCREEN_HEIGHT / 2;
+	draw->draw_start = -draw->line_height / 2 + SCREEN_HEIGHT / 2 + player->updown * UPDOWNROTSPEED;
 	if (draw->draw_start < 0)
 		draw->draw_start = 0;
-	draw->draw_end = draw->line_height / 2 + SCREEN_HEIGHT / 2;
+	draw->draw_end = draw->line_height / 2 + SCREEN_HEIGHT / 2 + player->updown * UPDOWNROTSPEED;
 	if (draw->draw_end >= SCREEN_HEIGHT)
 		draw->draw_end = SCREEN_HEIGHT - 1;
 	if (draw->side == 0)

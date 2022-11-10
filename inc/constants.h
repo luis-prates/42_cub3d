@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 17:37:54 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/08 00:22:26 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/09 23:43:53 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,7 @@
 # define MOVESPEED 0.025
 //the constant value is in radians/second
 # define ROTSPEED 0.01
+
+# define UPDOWNROTSPEED 10
 
 #endif

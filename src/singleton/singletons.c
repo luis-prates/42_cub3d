@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:15:57 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/07 17:59:41 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/09 23:16:16 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	init_singletons(void)
 	map->colours.floor = -1;
 	player = get_player_singleton();
 	ft_bzero((void *)player, sizeof(t_player));
+	player->updown = 0;
 }
 
 //! Always free mlx connection after freed images/windows
