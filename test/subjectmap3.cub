@@ -1,6 +1,6 @@
-NO ./sprites/graystone.xpm
-SO ./sprites/colorstone.xpm
-WE ./sprites/graybrick.xpm
+NO ./sprites/eagle.xpm
+SO ./sprites/wall128.xpm
+WE ./sprites/char_down1.xpm
 EA ./sprites/redbrick.xpm
 
 F 255,255,255

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 17:37:54 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/09 23:43:53 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/10 22:32:48 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@
 /**
  * Cub3D Constants
  */
-# define GAME_TITLE	"WIP"
+# define GAME_TITLE	"The Guy Game"
 
 # define SCREEN_WIDTH 640
 # define SCREEN_HEIGHT 480
@@ -104,9 +104,9 @@
 
 // movement consts
 //the constant value is in squares/second
-# define MOVE_SPEED 0.025 * (SCREEN_WIDTH / 640)
+# define MOVE_SPEED 0.025
 //the constant value is in radians/second
-# define ROT_SPEED 0.02 * (SCREEN_WIDTH / 640)
+# define ROT_SPEED 0.02
 
 # define UP_DOWN_SPEED 0
 

@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 00:13:06 by lprates           #+#    #+#             */
-/*   Updated: 2022/11/09 23:41:55 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/10 22:31:53 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,14 @@ void	draw_background(t_mlx *mlx, int x)
 
 void	draw_walls(t_mlx *mlx, int x, t_draw *draw)
 {
-	int	color;
-	int	y;
+	int			color;
+	int			y;
 	t_player	*player;
 
 	player = get_player_singleton();
+	draw->step = (double)draw->wall_texture.height / draw->line_height;
+	draw->tex_pos = draw->step * (draw->draw_start - (SCREEN_HEIGHT / 2
+				+ player->up_down * UP_DOWN_SPEED) + draw->line_height / 2);
 	y = draw->draw_start - 1;
 	while (++y < draw->draw_end)
 	{

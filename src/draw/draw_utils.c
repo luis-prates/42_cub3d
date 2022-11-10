@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 00:05:56 by lprates           #+#    #+#             */
-/*   Updated: 2022/11/10 09:39:10 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/10 22:09:15 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,6 @@ void	setup_walls(t_draw *draw, t_player *player)
 		draw->tex_idx.x = draw->wall_texture.width - draw->tex_idx.x - 1;
 	if (draw->side == 1 && draw->ray_dir.y < 0)
 		draw->tex_idx.x = draw->wall_texture.width - draw->tex_idx.x - 1;
-	draw->step = (double)draw->wall_texture.height / draw->line_height;
-	draw->tex_pos = draw->step * \
-		(draw->draw_start - (SCREEN_HEIGHT / 2 + player->up_down * UP_DOWN_SPEED) + draw->line_height / 2);
 }
 
 void	setup_rays(t_draw *draw, t_player *player)

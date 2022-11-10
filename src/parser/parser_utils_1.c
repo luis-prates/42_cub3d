@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:51:57 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/08 00:14:14 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/10 22:27:39 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ t_identifier	get_identifier_type(char const *line)
 {
 	line = skip_spaces(line);
 	if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "NO\t", 3))
-		return (NORTH);
-	else if (!ft_strncmp(line, "SO ", 3) || !ft_strncmp(line, "SO\t", 3))
-		return (SOUTH);
-	else if (!ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "WE\t", 3))
 		return (WEST);
-	else if (!ft_strncmp(line, "EA ", 3) || !ft_strncmp(line, "EA\t", 3))
+	else if (!ft_strncmp(line, "SO ", 3) || !ft_strncmp(line, "SO\t", 3))
 		return (EAST);
+	else if (!ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "WE\t", 3))
+		return (NORTH);
+	else if (!ft_strncmp(line, "EA ", 3) || !ft_strncmp(line, "EA\t", 3))
+		return (SOUTH);
 	else if (!ft_strncmp(line, "C ", 2) || !ft_strncmp(line, "C\t", 2))
 		return (CEILING);
 	else if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "F\t", 2))
