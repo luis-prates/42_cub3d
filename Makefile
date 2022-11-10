@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+         #
+#    By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 18:49:28 by tosilva           #+#    #+#              #
-#    Updated: 2022/11/07 21:51:52 by lprates          ###   ########.fr        #
+#    Updated: 2022/11/10 11:37:12 by tosilva          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,8 +122,8 @@ CL_NORM_NUM		:=$(COLORF_CYAN)
 ## Commands & Flags					  ##
 ########################################
 
-CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra # -03
+CC			= cc
+CFLAGS		= -Wall -Werror -Wextra #-O3
 DEBFLAGS	= -g -fsanitize=address
 INCFLAGS	:= -I./$(LIBFT_DIR)$(INC_DIR) -I./$(LIBMLX_DIR) -I./$(INC_DIR)
 LIBFLAGS	:= -L./$(LIBFT_DIR)$(BIN_DIR) -lft -L./$(LIBMLX_DIR) -lmlx -L/usr/lib -lbsd -lXext -lX11 -lm -lz
@@ -177,13 +177,13 @@ $(OBJS): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(DEP_DIR)%.d | ${foreach dir, $(OBJ_DIR),
 	@$(CC) $(CFLAGS) $(INCFLAGS) -c $< -o $@
 	@echo "⬜\c"
 
-$(DEPS): $(DEP_DIR)%.d: $(SRC_DIR)%.c $(LIBFT) $(LIBMLX) | ${foreach dir, $(DEP_DIR), ${addprefix $(DEP_DIR), $(ALL_DIRS)}}
+$(DEPS): $(DEP_DIR)%.d: $(SRC_DIR)%.c | ${foreach dir, $(DEP_DIR), ${addprefix $(DEP_DIR), $(ALL_DIRS)}}
 	@$(CC) $(CFLAGS) $(INCFLAGS) -M \
 		-MT '${patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$<} \
 			${patsubst $(SRC_DIR)%.c,$(DEP_DIR)%.d,$<}' $< \
 		-MF ${patsubst $(SRC_DIR)%.c,$(DEP_DIR)%.d,$<}
 
-bonus:
+bonus: all
 
 
 ########################################
@@ -306,4 +306,4 @@ msg_deleted:
 ### Includes																 ###
 ################################################################################
 
--include ${shell find . -maxdepth 2 -type f -name '*.d'}
+-include ${shell find . -type f -name '*.d'}

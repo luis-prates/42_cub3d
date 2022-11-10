@@ -1,10 +1,10 @@
-NO ./sprites/eagle.xpm
-SO ./sprites/eagle.xpm
-WE ./sprites/eagle.xpm
-EA ./sprites/eagle.xpm
+NO ./sprites/graystone.xpm
+SO ./sprites/colorstone.xpm
+WE ./sprites/graybrick.xpm
+EA ./sprites/redbrick.xpm
 
-F 220,100,0
-C 0,0,255
+F 255,255,255
+C 0,0,0
 
 111
 1011

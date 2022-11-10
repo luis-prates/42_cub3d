@@ -6,7 +6,7 @@
 #    By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 18:49:28 by tosilva           #+#    #+#              #
-#    Updated: 2022/10/16 11:57:01 by tosilva          ###   ########.fr        #
+#    Updated: 2022/11/10 10:40:13 by tosilva          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -185,8 +185,8 @@ CL_NORM_NUM		:=$(COLORF_CYAN)
 ## Commands & Flags					  ##
 ########################################
 
-CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra # -03
+CC			= cc
+CFLAGS		= -Wall -Werror -Wextra #-O3
 DEBFLAGS	= -g -fsanitize=address
 INCFLAGS	:= -I./$(INC_DIR)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 23:38:48 by lprates           #+#    #+#             */
-/*   Updated: 2022/11/08 00:46:45 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/10 09:21:41 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ static void	move_player(t_player *player)
 	t_map	*map;
 
 	map = get_map_singleton();
-	reverse = 1;
-	map_x = (int)(player->pos.x + reverse * player->dir.x * MOVESPEED);
-	map_y = (int)(player->pos.y + reverse * player->dir.y * MOVESPEED);
 	if (player->movement == BACKWARDS)
 		reverse = -1;
+	else
+		reverse = 1;
+	map_x = (int)(player->pos.x + reverse * player->dir.x * MOVE_SPEED);
+	map_y = (int)(player->pos.y + reverse * player->dir.y * MOVE_SPEED);
 	if (map->map[map_x][(int)player->pos.y] == 0)
-		player->pos.x += reverse * player->dir.x * MOVESPEED;
+		player->pos.x += reverse * player->dir.x * MOVE_SPEED;
 	if (map->map[(int)player->pos.x][map_y] == 0)
-		player->pos.y += reverse * player->dir.y * MOVESPEED;
+		player->pos.y += reverse * player->dir.y * MOVE_SPEED;
 }
 
 static void	strafe_player(t_player *player)
@@ -39,17 +40,18 @@ static void	strafe_player(t_player *player)
 	t_map	*map;
 
 	map = get_map_singleton();
-	reverse = 1;
-	map_x = (int)(player->pos.x - reverse * player->dir.y * MOVESPEED);
-	map_y = (int)(player->pos.y + reverse * player->dir.x * MOVESPEED);
 	if (player->movement == STRAFE_R)
 		reverse = -1;
+	else
+		reverse = 1;
+	map_x = (int)(player->pos.x - reverse * player->dir.y * MOVE_SPEED);
+	map_y = (int)(player->pos.y + reverse * player->dir.x * MOVE_SPEED);
 	if (map->map[map_x][(int)player->pos.y] == 0)
 	{
-		player->pos.x -= reverse * player->dir.y * MOVESPEED;
+		player->pos.x -= reverse * player->dir.y * MOVE_SPEED;
 	}
 	if (map->map[(int) player->pos.x][map_y] == 0)
-		player->pos.y += reverse * player->dir.x * MOVESPEED;
+		player->pos.y += reverse * player->dir.x * MOVE_SPEED;
 }
 
 static void	rotate_player(t_player *player)
@@ -58,19 +60,20 @@ static void	rotate_player(t_player *player)
 	double	old_plane_x;
 	int		reverse;
 
-	reverse = 1;
 	if (player->movement == ROTATE_R)
 		reverse = -1;
+	else
+		reverse = 1;
 	old_dir_x = player->dir.x;
-	player->dir.x = player->dir.x * cos(reverse * ROTSPEED) \
-		- player->dir.y * sin(reverse * ROTSPEED);
-	player->dir.y = old_dir_x * sin(reverse * ROTSPEED) \
-		+ player->dir.y * cos(reverse * ROTSPEED);
+	player->dir.x = player->dir.x * cos(reverse * ROT_SPEED) \
+		- player->dir.y * sin(reverse * ROT_SPEED);
+	player->dir.y = old_dir_x * sin(reverse * ROT_SPEED) \
+		+ player->dir.y * cos(reverse * ROT_SPEED);
 	old_plane_x = player->plane.x;
-	player->plane.x = player->plane.x * cos(reverse * ROTSPEED) \
-		- player->plane.y * sin(reverse * ROTSPEED);
-	player->plane.y = old_plane_x * sin(reverse * ROTSPEED) \
-		+ player->plane.y * cos(reverse * ROTSPEED);
+	player->plane.x = player->plane.x * cos(reverse * ROT_SPEED) \
+		- player->plane.y * sin(reverse * ROT_SPEED);
+	player->plane.y = old_plane_x * sin(reverse * ROT_SPEED) \
+		+ player->plane.y * cos(reverse * ROT_SPEED);
 }
 
 void	handle_player_movement(void)

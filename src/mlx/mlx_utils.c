@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+	/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
@@ -33,6 +33,7 @@ void	*new_mlx_window(int size_x, int size_y, char *title)
 	void	*mlx_window;
 
 	mlx = get_mlx_singleton();
+	mlx_window = NULL;
 	if (mlx->connection)
 	{
 		mlx_window = mlx_new_window(mlx->connection, size_x, size_y, title);

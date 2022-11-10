@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:42:20 by tosilva           #+#    #+#             */
-/*   Updated: 2022/10/16 12:58:06 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/10 11:13:12 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@ static t_bool	convert_identifier(int fd, t_identifier type, char const *line)
 	t_bool	ret;
 
 	ret = FALSE;
-	if (is_texture_identifier(type))
+	if (type == INVALID)
+		ft_strerror(INVALID_ARGUMENT, INVALID_IDENTIFIER);
+	else if (is_texture_identifier(type))
 		ret = convert_texture(type, line);
 	else if (is_colour_identifier(type))
 		ret = convert_colour(type, line);
 	else if (type == MAP && are_textures_n_colours_parsed() && !is_map_parsed())
 		ret = convert_map(fd, line);
 	else if (is_map_parsed())
-		ft_strerror(INVALID_ARGUMENT, IDENTIFIERS_AFTER_MAP);
+		ft_strerror(INVALID_ARGUMENT, MAP_MUST_BE_LAST);
 	else
 		ft_strerror(INVALID_ARGUMENT, MISSING_IDENTIFIERS_BEFORE_MAP);
 	return (ret);
@@ -43,16 +45,14 @@ static t_bool	fill_map_n_player(int const fd)
 	{
 		rd = get_next_line(fd, &line);
 		type = get_identifier_type(line);
-		if (type == INVALID)
-		{
-			ft_strerror(INVALID_ARGUMENT, INVALID_IDENTIFIER);
-			ret = FALSE;
-		}
-		else if (type != SPACE)
-		{
+		if (type != SPACE)
 			ret = convert_identifier(fd, type, line);
-		}
 		ft_free((void **)&line);
+	}
+	if (rd == FD_EOF && ret == TRUE && !is_map_parsed())
+	{
+		ret = FALSE;
+		ft_strerror(INVALID_ARGUMENT, NULL_MAP_ERROR);
 	}
 	return (ret);
 }
