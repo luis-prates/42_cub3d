@@ -36,7 +36,7 @@ void	draw_walls(t_mlx *mlx, int x, t_draw *draw)
 	int	color;
 	int	y;
 
-	draw->step = 1.0 * draw->wall_texture.height / draw->line_height;
+	draw->step = (double)draw->wall_texture.height / draw->line_height;
 	draw->tex_pos = draw->step * \
 		(draw->draw_start - SCREEN_HEIGHT / 2 + draw->line_height / 2);
 	y = draw->draw_start - 1;
