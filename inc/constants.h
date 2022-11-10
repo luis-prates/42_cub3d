@@ -6,7 +6,7 @@
 /*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 17:37:54 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/10 09:40:30 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/10 11:00:05 by tosilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@
 # define FILE_OPEN_ERROR				"Error opening file"
 # define INVALID_IDENTIFIER				"File has an invalid identifier"
 # define MISSING_IDENTIFIERS_BEFORE_MAP	"Missing identifiers before map"
-# define IDENTIFIERS_AFTER_MAP			"An identifier cannot be after the map"
+# define MAP_MUST_BE_LAST				"The map must be the last information"
 # define TEXTURE_ERROR					"Error with one or more textures"
 # define INVALID_TEXTURE_DESCRIPTION	"Invalid texture description"
 # define INVALID_COLOUR_DESCRIPTION		"Invalid colour description"
@@ -80,9 +80,7 @@
 # define MAP_WALL_INCOMPLETE			"Map wall isn't closed"
 # define MISSING_PLAYER					"The player is missing"
 # define MORE_THAN_ONE_PLAYER_GIVEN		"Only one player char is allowed"
-
-// # define MAP_WITH_MISSING_CHARACTERS	"Map must have C, E, and P characters"
-// # define NULL_MAP_ERROR				"No map information provided"
+# define NULL_MAP_ERROR					"No map information provided"
 
 # define MLX_CONNECTION_ERROR		"Error connecting with MinilibX"
 # define MLX_WINDOW_CREATION_ERROR	"Error creating a new window with MinilibX"
@@ -106,8 +104,8 @@
 
 // movement consts
 //the constant value is in squares/second
-# define MOVE_SPEED 0.025
+# define MOVE_SPEED 0.025 * (SCREEN_WIDTH / 640)
 //the constant value is in radians/second
-# define ROT_SPEED 0.02
+# define ROT_SPEED 0.02 * (SCREEN_WIDTH / 640)
 
 #endif
