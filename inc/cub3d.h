@@ -81,8 +81,6 @@ void			setup_rays(t_draw *draw, t_player *player);
 void			setup_walls(t_draw *draw, t_player *player);
 void			do_dda(t_draw *draw, t_map *map);
 int				my_get_image_pixel(t_mlximage *data, int x, int y);
-void			draw_walls(t_mlx *mlx, int x, t_draw *draw);
-void			draw_background(t_mlx *mlx, int x);
 void			handle_player_movement(void);
 void			draw_textures(int x);
 

@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	draw_background(t_mlx *mlx, int x)
+static void	draw_background(t_mlx *mlx, int x)
 {
 	size_t	j;
 	t_map	*map;
@@ -33,7 +33,7 @@ void	draw_background(t_mlx *mlx, int x)
 	}
 }
 
-void	draw_walls(t_mlx *mlx, int x, t_draw *draw)
+static void	draw_walls(t_mlx *mlx, int x, t_draw *draw)
 {
 	int			color;
 	int			y;
@@ -57,4 +57,23 @@ void	draw_walls(t_mlx *mlx, int x, t_draw *draw)
 			color = add_shade(0.6, color);
 		pixel_mlx_image_put(&mlx->screen, x, y, color);
 	}
+}
+
+void	draw_textures(int x)
+{
+	t_mlx		*mlx;
+	t_player	*player;
+	t_map		*map;
+	t_draw		draw;
+
+	mlx = get_mlx_singleton();
+	player = get_player_singleton();
+	map = get_map_singleton();
+	ft_bzero((void *)&draw, sizeof(t_draw));
+	draw.camera_x = (2 * x / (double)SCREEN_WIDTH) - 1;
+	setup_rays(&draw, player);
+	do_dda(&draw, map);
+	setup_walls(&draw, player);
+	draw_walls(mlx, x, &draw);
+	draw_background(mlx, x);
 }
