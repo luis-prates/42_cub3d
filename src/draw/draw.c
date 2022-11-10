@@ -25,9 +25,9 @@ void	draw_background(t_mlx *mlx, int x)
 	{
 		if (!my_get_image_pixel(&mlx->screen, x, j))
 		{
-			if (j < SCREEN_HEIGHT / 2 + player->updown * UPDOWNROTSPEED)
+			if (j < SCREEN_HEIGHT / 2 + player->up_down * UP_DOWN_SPEED)
 				pixel_mlx_image_put(&mlx->screen, x, j, map->colours.celling);
-			else if (j > SCREEN_HEIGHT / 2 + player->updown * UPDOWNROTSPEED)
+			else if (j > SCREEN_HEIGHT / 2 + player->up_down * UP_DOWN_SPEED)
 				pixel_mlx_image_put(&mlx->screen, x, j, map->colours.floor);
 		}
 	}
@@ -40,9 +40,6 @@ void	draw_walls(t_mlx *mlx, int x, t_draw *draw)
 	t_player	*player;
 
 	player = get_player_singleton();
-	draw->step = (double)draw->wall_texture.height / draw->line_height;
-	draw->tex_pos = draw->step * \
-		(draw->draw_start - (SCREEN_HEIGHT / 2 + player->updown * UPDOWNROTSPEED) + draw->line_height / 2);
 	y = draw->draw_start - 1;
 	while (++y < draw->draw_end)
 	{

@@ -47,9 +47,9 @@ void	save_movement(int keycode)
 	else if (keycode == LOOK_RIGHT)
 		player->movement = ROTATE_R;
 	else if (keycode == LOOK_UP)
-		player->updown++;
+		player->up_down++;
 	else if (keycode == LOOK_DOWN)
-		player->updown--;
+		player->up_down--;
 }
 
 void	draw_textures(int x)

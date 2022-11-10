@@ -38,11 +38,11 @@ void	do_dda(t_draw *draw, t_map *map)
 		{
 			draw->side_dist.y += draw->delta_dist.y;
 			draw->map_idx.y += draw->step_idx.y;
+			draw->side = 1;
 			if (draw->step_idx.y == -1)
 				draw->wall_texture = map->textures.north;
 			else if (draw->step_idx.y == 1)
 				draw->wall_texture = map->textures.south;
-			draw->side = 1;
 		}
 		if (map->map[draw->map_idx.x][draw->map_idx.y] > 0)
 			draw->hit = 1;
@@ -56,10 +56,10 @@ void	setup_walls(t_draw *draw, t_player *player)
 	else
 		draw->perp_wall_dist = (draw->side_dist.y - draw->delta_dist.y);
 	draw->line_height = (int)(SCREEN_HEIGHT / draw->perp_wall_dist);
-	draw->draw_start = -draw->line_height / 2 + SCREEN_HEIGHT / 2 + player->updown * UPDOWNROTSPEED;
+	draw->draw_start = -draw->line_height / 2 + SCREEN_HEIGHT / 2 + player->up_down * UP_DOWN_SPEED;
 	if (draw->draw_start < 0)
 		draw->draw_start = 0;
-	draw->draw_end = draw->line_height / 2 + SCREEN_HEIGHT / 2 + player->updown * UPDOWNROTSPEED;
+	draw->draw_end = draw->line_height / 2 + SCREEN_HEIGHT / 2 + player->up_down * UP_DOWN_SPEED;
 	if (draw->draw_end >= SCREEN_HEIGHT)
 		draw->draw_end = SCREEN_HEIGHT;
 	if (draw->side == 0)
@@ -72,9 +72,9 @@ void	setup_walls(t_draw *draw, t_player *player)
 		draw->tex_idx.x = draw->wall_texture.width - draw->tex_idx.x - 1;
 	if (draw->side == 1 && draw->ray_dir.y < 0)
 		draw->tex_idx.x = draw->wall_texture.width - draw->tex_idx.x - 1;
-	draw->step = 1.0 * draw->wall_texture.height / draw->line_height;
+	draw->step = (double)draw->wall_texture.height / draw->line_height;
 	draw->tex_pos = draw->step * \
-		(draw->draw_start - SCREEN_HEIGHT / 2 + draw->line_height / 2);
+		(draw->draw_start - (SCREEN_HEIGHT / 2 + player->up_down * UP_DOWN_SPEED) + draw->line_height / 2);
 }
 
 void	setup_rays(t_draw *draw, t_player *player)

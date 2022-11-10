@@ -124,7 +124,7 @@ typedef struct s_player
 	t_fpoint	plane;
 	t_movement	movement;
 	t_bool		exists;
-	double		updown;
+	double		up_down;
 }				t_player;
 
 #endif

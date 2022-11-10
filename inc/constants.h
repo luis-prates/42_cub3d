@@ -108,6 +108,6 @@
 //the constant value is in radians/second
 # define ROT_SPEED 0.02 * (SCREEN_WIDTH / 640)
 
-# define UPDOWNROTSPEED 10
+# define UP_DOWN_SPEED 0
 
 #endif

@@ -47,9 +47,7 @@ static void	strafe_player(t_player *player)
 	map_x = (int)(player->pos.x - reverse * player->dir.y * MOVE_SPEED);
 	map_y = (int)(player->pos.y + reverse * player->dir.x * MOVE_SPEED);
 	if (map->map[map_x][(int)player->pos.y] == 0)
-	{
 		player->pos.x -= reverse * player->dir.y * MOVE_SPEED;
-	}
 	if (map->map[(int) player->pos.x][map_y] == 0)
 		player->pos.y += reverse * player->dir.x * MOVE_SPEED;
 }
@@ -87,4 +85,12 @@ void	handle_player_movement(void)
 		strafe_player(player);
 	else if (player->movement == ROTATE_L || player->movement == ROTATE_R)
 		rotate_player(player);
+	if ((player->pos.x - (int)player->pos.x) < 0.000001)
+		player->pos.x += 0.010000;
+	else if ((player->pos.x - (int)player->pos.x) > 0.999999)
+		player->pos.x -= 0.010000;
+	if ((player->pos.y - (int)player->pos.y) < 0.000001)
+		player->pos.y += 0.010000;
+	else if ((player->pos.y - (int)player->pos.y) > 0.999999)
+		player->pos.y -= 0.010000;
 }
