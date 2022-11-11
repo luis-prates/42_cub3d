@@ -19,6 +19,7 @@
 # include "constants.h"
 # include "data.h"
 
+# include <X11/X.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>

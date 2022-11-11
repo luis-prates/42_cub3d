@@ -45,7 +45,7 @@ static int	on_close(void *p)
 static int	on_focus(void *p)
 {
 	p = (void *)p;
-	//on_next_frame(NULL); // TODO Needed ?
+	on_next_frame(NULL); // TODO Needed ?
 	return (TRUE);
 }
 
@@ -80,16 +80,45 @@ static int	on_key_press(int keycode, void *p)
 	return (ret);
 }
 
+static int	on_mouse_move(t_mlx *release)
+{
+	t_mlx		*mlx;
+	t_player	*player;
+	int			x;
+	int			y;
+
+	printf("Im here\n");
+	player = get_player_singleton();
+	if (release)
+	{
+		player->movement = NONE;
+	}
+	else
+	{
+		mlx = get_mlx_singleton();
+		mlx_mouse_get_pos(mlx->connection, mlx->window, &x, &y);
+		if (x < SCREEN_WIDTH / 3)
+			player->movement = ROTATE_L;
+		else if (x > SCREEN_WIDTH / 3 * 2)
+			player->movement = ROTATE_R;
+		else
+			player->movement = NONE;
+	}
+	return (TRUE);
+}
+
 void create_hooks(void)
 {
 	t_mlx	*mlx;
 
 	mlx = get_mlx_singleton();
-	mlx_hook(mlx->window, KEY_PRESS, KEY_PRESS_MASK, on_key_press, NULL);
-	mlx_hook(mlx->window, KEY_RELEASE, KEY_RELEASE_MASK, on_key_release, NULL);
-	mlx_hook(mlx->window, DESTROY_NOTIFY,
-		STRUCTURE_NOTIFY_MASK, on_close, NULL);
-	mlx_hook(mlx->window, VISIBILITY_NOTIFY,
-		VISIBILITY_CHANGE_MASK, on_focus, NULL);
+	//mlx_mouse_hide(mlx->connection, mlx->window);
+	mlx_hook(mlx->window, KeyPress, KeyPressMask, on_key_press, NULL);
+	mlx_hook(mlx->window, KeyRelease, KeyReleaseMask, on_key_release, NULL);
+	mlx_hook(mlx->window, MotionNotify, PointerMotionMask, on_mouse_move, NULL);
+	mlx_hook(mlx->window, LeaveNotify, LeaveWindowMask, on_mouse_move, &mlx);
+	mlx_hook(mlx->window, DestroyNotify, StructureNotifyMask, on_close, NULL);
+	mlx_hook(mlx->window, VisibilityNotify,
+		VisibilityChangeMask, on_focus, NULL);
 	mlx_loop_hook(mlx->connection, on_next_frame, NULL);
 }

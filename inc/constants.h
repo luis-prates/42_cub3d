@@ -14,34 +14,6 @@
 # define CONSTANTS_H
 
 /**
- * X11 events and masks
- */
-# define KEY_PRESS			02
-# define KEY_RELEASE		03
-# define BUTTON_PRESS		04
-# define BUTTON_RELEASE		05
-# define MOTION_NOTIFY		06
-# define ENTER_NOTIFY		07
-# define LEAVE_NOTIFY		08
-# define FOCUS_IN			09
-# define FOCUS_OUT			10
-# define KEY_MAP_NOTIFY		11
-# define EXPOSE				12
-# define VISIBILITY_NOTIFY	15
-# define DESTROY_NOTIFY		17
-# define NO_EVENT_MASK				0L
-# define KEY_PRESS_MASK				1L
-# define KEY_RELEASE_MASK			2L
-# define BUTTON_PRESS_MASK			4L
-# define BUTTON_RELEASE_MASK		8L
-# define ENTER_WINDOW_MASK			16L
-# define LEAVE_WINDOW_MASK			32L
-# define KEY_MAP_STATE_MASK			16384L
-# define EXPOSURE_MASK				32768L
-# define VISIBILITY_CHANGE_MASK		65536L
-# define STRUCTURE_NOTIFY_MASK		131072L
-
-/**
  * Linux keycodes
  */
 # define ESC			65307	// ESQ
