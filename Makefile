@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+         #
+#    By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 18:49:28 by tosilva           #+#    #+#              #
-#    Updated: 2022/11/10 11:37:12 by tosilva          ###   ########.fr        #
+#    Updated: 2022/11/11 21:43:14 by lprates          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ PARSER_FILES	= parser.c \
 					parser_utils_1.c \
 					parser_utils_2.c \
 					parser_colour.c \
+					parser_colour_utils_1.c \
 					parser_map.c \
 					parser_map_utils_1.c \
 					parser_map_utils_2.c \

@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 17:37:54 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/11 19:56:03 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/11 21:33:47 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define BAD_FILE_EXTENTION				"File extension must be '.cub'"
 # define FILE_OPEN_ERROR				"Error opening file"
 # define INVALID_IDENTIFIER				"File has an invalid identifier"
-# define MISSING_IDENTIFIERS_BEFORE_MAP	"Missing identifiers before map"
+# define MISSING_IDENTIFIERS_BEFORE_MAP	"Missing/invalid identifiers before map"
 # define MAP_MUST_BE_LAST				"The map must be the last information"
 # define TEXTURE_ERROR					"Error with one or more textures"
 # define INVALID_TEXTURE_DESCRIPTION	"Invalid texture description"
@@ -54,6 +54,7 @@
 # define MISSING_PLAYER					"The player is missing"
 # define MORE_THAN_ONE_PLAYER_GIVEN		"Only one player char is allowed"
 # define NULL_MAP_ERROR					"No map information provided"
+# define DUPLICATE_KEYS					"Duplicate keys found"
 
 # define MLX_CONNECTION_ERROR		"Error connecting with MinilibX"
 # define MLX_WINDOW_CREATION_ERROR	"Error creating a new window with MinilibX"

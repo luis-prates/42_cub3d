@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:42:20 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/10 11:13:12 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/11 21:29:27 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static t_bool	fill_map_n_player(int const fd)
 		if (type != SPACE)
 			ret = convert_identifier(fd, type, line);
 		ft_free((void **)&line);
+		if (!ret)
+			break ;
 	}
 	if (rd == FD_EOF && ret == TRUE && !is_map_parsed())
 	{

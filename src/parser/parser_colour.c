@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:51:57 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/11 20:05:42 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/11 21:42:35 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,15 @@ t_bool	convert_colour(t_identifier const type, char const *line)
 	t_map	*map;
 	int		colour;
 
-	ret = FALSE;
 	map = get_map_singleton();
-	colour = get_colour(line);
-	if (colour != -1)
-	{
-		if (type == CEILING)
-			map->colours.celling = colour;
-		else if (type == FLOOR)
-			map->colours.floor = colour;
-		ret = TRUE;
-	}
+	ret = check_duplicate_keys(type);
+	if (ret)
+		colour = get_colour(line);
+	else
+		ft_strerror(BAD_INPUT, DUPLICATE_KEYS);
+	if (ret && colour != -1)
+		assign_colours(type, colour);
+	else
+		ret = FALSE;
 	return (ret);
 }

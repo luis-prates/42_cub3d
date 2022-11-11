@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:21:53 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/11 20:09:59 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/11 21:08:19 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,12 @@ typedef struct s_map
 	size_t		height;
 	t_textures	textures;
 	t_colours	colours;
+	t_bool		no_assigned;
+	t_bool		so_assigned;
+	t_bool		we_assigned;
+	t_bool		ea_assigned;
+	t_bool		ceil_assigned;
+	t_bool		floor_assigned;
 }				t_map;
 
 typedef struct s_player

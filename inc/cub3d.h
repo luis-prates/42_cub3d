@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 12:31:49 by lprates           #+#    #+#             */
-/*   Updated: 2022/11/11 19:52:32 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/11 21:42:13 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ t_bool			convert_colour(t_identifier const type, char const *line);
 t_bool			convert_map(int const fd, char const *line);
 
 t_bool			parse_map(char const *filename);
+
+t_bool			check_duplicate_keys(t_identifier const type);
+void			assign_colours(t_identifier const type, int colour);
 
 /* GAME */
 t_bool			start_game(void);
