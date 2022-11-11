@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 00:13:06 by lprates           #+#    #+#             */
-/*   Updated: 2022/11/10 22:31:53 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/11 20:06:13 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	draw_background(t_mlx *mlx, int x)
 {
-	size_t	j;
-	t_map	*map;
+	size_t		j;
+	t_map		*map;
 	t_player	*player;
 
 	map = get_map_singleton();

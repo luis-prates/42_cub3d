@@ -6,12 +6,11 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 17:46:40 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/08 00:47:44 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/11 20:05:15 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 t_bool	start_game(void)
 {

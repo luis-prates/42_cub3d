@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 17:53:46 by lprates           #+#    #+#             */
-/*   Updated: 2022/11/03 00:17:04 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/11 20:05:28 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ int	get_opposite(int const colour)
 {
 	int	opposite_colour;
 
-	opposite_colour = 0xFFFFFF - colour; // ?? No transparent on "0xFFFFFF" ??
+	opposite_colour = 0xFFFFFF - colour;
 	return (opposite_colour);
 }

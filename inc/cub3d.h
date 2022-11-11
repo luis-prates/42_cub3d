@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 12:31:49 by lprates           #+#    #+#             */
-/*   Updated: 2022/11/10 10:51:52 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/11 19:52:32 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ t_bool			start_game(void);
 void			create_hooks(void);
 t_bool			is_movement(int keycode);
 void			save_movement(int keycode);
+int				on_key_press(int keycode, void *p);
+int				on_mouse_move(t_mlx *release);
+int				on_close(void *p);
 
 /* DRAW */
 void			setup_rays(t_draw *draw, t_player *player);

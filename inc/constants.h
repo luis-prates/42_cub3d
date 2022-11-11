@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 17:37:54 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/10 22:32:48 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/11 19:56:03 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define LOOK_DOWN		65364	// ↓
 # define LOOK_LEFT		65361	// ←
 # define LOOK_RIGHT		65363	// →
+# define TOGGLE_MOUSE	113		// Q
 
 /**
  * Errors - use in ft_strerror
@@ -78,7 +79,7 @@
 //the constant value is in squares/second
 # define MOVE_SPEED 0.025
 //the constant value is in radians/second
-# define ROT_SPEED 0.02
+# define ROT_SPEED 0.015
 
 # define UP_DOWN_SPEED 0
 
