@@ -128,5 +128,7 @@ t_bool	skip_identifiers(int const fd, char const *first_line)
 	}
 	ret = ft_ternchar(rd > FD_EOF && *line, TRUE, FALSE);
 	ft_free((void **)&line);
+	get_next_line(fd, (char **)&line);
+	ft_free((void **)&line);
 	return (ret);
 }

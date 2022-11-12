@@ -86,7 +86,7 @@ void	create_hooks(void)
 	t_mlx	*mlx;
 
 	mlx = get_mlx_singleton();
-	mlx_mouse_hide(mlx->connection, mlx->window);
+	//mlx_mouse_hide(mlx->connection, mlx->window);
 	mlx_hook(mlx->window, KeyPress, KeyPressMask, on_key_press, NULL);
 	mlx_hook(mlx->window, KeyRelease, KeyReleaseMask, on_key_release, NULL);
 	mlx_hook(mlx->window, MotionNotify, PointerMotionMask, on_mouse_move, NULL);

@@ -24,6 +24,8 @@ void	*new_mlx_connection(void)
 
 void	free_mlx_connection(void **mlx_connection)
 {
+	if (mlx_connection && *mlx_connection)
+		mlx_destroy_display(*mlx_connection);
 	ft_free(mlx_connection);
 }
 
