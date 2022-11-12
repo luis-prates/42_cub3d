@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 00:13:06 by lprates           #+#    #+#             */
-/*   Updated: 2022/11/10 22:31:53 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/11 20:06:13 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	draw_background(t_mlx *mlx, int x)
 {
-	size_t	j;
-	t_map	*map;
+	size_t		j;
+	t_map		*map;
 	t_player	*player;
 
 	map = get_map_singleton();
@@ -23,7 +23,7 @@ static void	draw_background(t_mlx *mlx, int x)
 	j = -1;
 	while (++j < SCREEN_HEIGHT)
 	{
-		if (!my_get_image_pixel(&mlx->screen, x, j))
+		if (!get_image_pixel(&mlx->screen, x, j))
 		{
 			if (j < SCREEN_HEIGHT / 2 + player->up_down * UP_DOWN_SPEED)
 				pixel_mlx_image_put(&mlx->screen, x, j, map->colours.celling);
@@ -35,9 +35,9 @@ static void	draw_background(t_mlx *mlx, int x)
 
 static void	draw_walls(t_mlx *mlx, int x, t_draw *draw)
 {
+	t_player	*player;
 	int			color;
 	int			y;
-	t_player	*player;
 
 	player = get_player_singleton();
 	draw->step = (double)draw->wall_texture.height / draw->line_height;
@@ -48,7 +48,7 @@ static void	draw_walls(t_mlx *mlx, int x, t_draw *draw)
 	{
 		draw->tex_idx.y = (int)draw->tex_pos & (draw->wall_texture.height - 1);
 		draw->tex_pos += draw->step;
-		color = my_get_image_pixel(
+		color = get_image_pixel(
 				&draw->wall_texture,
 				draw->tex_idx.x,
 				draw->tex_idx.y

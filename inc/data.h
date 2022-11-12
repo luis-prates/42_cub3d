@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:21:53 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/09 23:42:12 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/11 20:09:59 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_mlx
 	t_mlximage	screen;
 	size_t		width;
 	size_t		height;
+	t_bool		toggle_mouse;
 }				t_mlx;
 
 typedef struct s_draw
@@ -78,7 +79,7 @@ typedef struct s_draw
 	int			draw_end;
 	t_fpoint	ray_dir;
 	t_fpoint	side_dist;
-	t_fpoint	delta_dist;
+	t_fpoint	delta;
 	double		perp_wall_dist;
 	double		camera_x;
 	t_point		map_idx;

@@ -84,11 +84,17 @@ void	free_mlximage(t_mlximage *image)
 	}
 }
 
-t_mlximage	free_and_xpm_to_mlx_image(t_mlximage *image, char const *file)
+int	get_image_pixel(t_mlximage *image, int x, int y)
 {
-	free_mlximage(image);
-	*image = xpm_to_mlx_image(file);
-	return (*image);
+	char	*dst;
+
+	if (image->addr)
+	{
+		dst = image->addr
+			+ (y * image->line_length + x * (image->bits_per_pixel / 8));
+		return (*(unsigned int *)dst);
+	}
+	return (-1);
 }
 
 void	pixel_mlx_image_put(t_mlximage *image,
@@ -96,7 +102,7 @@ void	pixel_mlx_image_put(t_mlximage *image,
 {
 	char	*dst;
 
-	if (image->img)
+	if (image->addr)
 	{
 		dst = image->addr
 			+ (y * image->line_length + x * (image->bits_per_pixel / 8));

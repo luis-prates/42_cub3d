@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_colour.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosilva <tosilva@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 18:51:57 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/07 17:01:54 by tosilva          ###   ########.fr       */
+/*   Updated: 2022/11/11 20:05:42 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ static t_bool	split_string_to_major_colours(char const *str,
 		ret = is_major_colour(*r);
 		ret &= is_major_colour(*g);
 		ret &= is_major_colour(*b);
-		// ret = ft_ternchar(is_major_colour(*r) && is_major_colour(*g)
-		// 		&& is_major_colour(*b), TRUE, FALSE);
 	}
 	ft_freemtx((void ***)&colours);
 	return (ret);
@@ -102,11 +100,16 @@ t_bool	convert_colour(t_identifier const type, char const *line)
 	colour = get_colour(line);
 	if (colour != -1)
 	{
-		if (type == CEILING)
-			map->colours.celling = colour;
-		else if (type == FLOOR)
-			map->colours.floor = colour;
 		ret = TRUE;
+		if (type == CEILING && map->colours.celling == -1)
+			map->colours.celling = colour;
+		else if (type == FLOOR && map->colours.celling == -1)
+			map->colours.floor = colour;
+		else
+		{
+			ft_strerror(INVALID_ARGUMENT, DUPLICATE_IDENTIFIER);
+			ret = FALSE;
+		}
 	}
 	return (ret);
 }

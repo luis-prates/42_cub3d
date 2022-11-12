@@ -66,7 +66,9 @@ t_identifier	get_identifier_type(char const *line)
 		return (CEILING);
 	else if (!ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "F\t", 2))
 		return (FLOOR);
-	else if (*line && is_map_character(*line))
+	else if (*line && is_map_character(*line)
+		&& (!is_player_character(*line)
+			|| *(line + 1) == MAP_FLOOR || *(line + 1) == MAP_WALL))
 		return (MAP);
 	else if (!*line)
 		return (SPACE);

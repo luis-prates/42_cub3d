@@ -6,40 +6,12 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 17:37:54 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/10 22:32:48 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/11 19:56:03 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONSTANTS_H
 # define CONSTANTS_H
-
-/**
- * X11 events and masks
- */
-# define KEY_PRESS			02
-# define KEY_RELEASE		03
-# define BUTTON_PRESS		04
-# define BUTTON_RELEASE		05
-# define MOTION_NOTIFY		06
-# define ENTER_NOTIFY		07
-# define LEAVE_NOTIFY		08
-# define FOCUS_IN			09
-# define FOCUS_OUT			10
-# define KEY_MAP_NOTIFY		11
-# define EXPOSE				12
-# define VISIBILITY_NOTIFY	15
-# define DESTROY_NOTIFY		17
-# define NO_EVENT_MASK				0L
-# define KEY_PRESS_MASK				1L
-# define KEY_RELEASE_MASK			2L
-# define BUTTON_PRESS_MASK			4L
-# define BUTTON_RELEASE_MASK		8L
-# define ENTER_WINDOW_MASK			16L
-# define LEAVE_WINDOW_MASK			32L
-# define KEY_MAP_STATE_MASK			16384L
-# define EXPOSURE_MASK				32768L
-# define VISIBILITY_CHANGE_MASK		65536L
-# define STRUCTURE_NOTIFY_MASK		131072L
 
 /**
  * Linux keycodes
@@ -53,6 +25,7 @@
 # define LOOK_DOWN		65364	// ↓
 # define LOOK_LEFT		65361	// ←
 # define LOOK_RIGHT		65363	// →
+# define TOGGLE_MOUSE	113		// Q
 
 /**
  * Errors - use in ft_strerror
@@ -71,6 +44,7 @@
 # define BAD_FILE_EXTENTION				"File extension must be '.cub'"
 # define FILE_OPEN_ERROR				"Error opening file"
 # define INVALID_IDENTIFIER				"File has an invalid identifier"
+# define DUPLICATE_IDENTIFIER			"An identifier is duplicated"
 # define MISSING_IDENTIFIERS_BEFORE_MAP	"Missing identifiers before map"
 # define MAP_MUST_BE_LAST				"The map must be the last information"
 # define TEXTURE_ERROR					"Error with one or more textures"
@@ -106,7 +80,7 @@
 //the constant value is in squares/second
 # define MOVE_SPEED 0.025
 //the constant value is in radians/second
-# define ROT_SPEED 0.02
+# define ROT_SPEED 0.015
 
 # define UP_DOWN_SPEED 0
 

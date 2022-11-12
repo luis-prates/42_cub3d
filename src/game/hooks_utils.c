@@ -6,7 +6,7 @@
 /*   By: lprates <lprates@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 18:11:34 by tosilva           #+#    #+#             */
-/*   Updated: 2022/11/09 23:41:14 by lprates          ###   ########.fr       */
+/*   Updated: 2022/11/11 20:11:04 by lprates          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,40 @@ void	save_movement(int keycode)
 		player->up_down++;
 	else if (keycode == LOOK_DOWN)
 		player->up_down--;
+}
+
+int	on_mouse_move(void *p)
+{
+	t_mlx		*mlx;
+	t_player	*player;
+	int			x;
+	int			y;
+
+	(void)p;
+	mlx = get_mlx_singleton();
+	player = get_player_singleton();
+	if (mlx->toggle_mouse)
+	{
+		mlx_mouse_get_pos(mlx->connection, mlx->window, &x, &y);
+		if (x < SCREEN_WIDTH / 2)
+			player->movement = ROTATE_L;
+		else if (x > SCREEN_WIDTH / 2)
+			player->movement = ROTATE_R;
+		else
+			player->movement = NONE;
+		if (x != SCREEN_WIDTH / 2 || y != SCREEN_HEIGHT / 2)
+			mlx_mouse_move(mlx->connection, mlx->window,
+				SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	}
+	else
+		player->movement = NONE;
+	return (TRUE);
+}
+
+int	on_close(void *p)
+{
+	(void)p;
+	free_singletons();
+	exit(EXIT_SUCCESS);
+	return (TRUE);
 }

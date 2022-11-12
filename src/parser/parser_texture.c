@@ -53,24 +53,28 @@ static t_mlximage	get_texture(char const *line)
 
 t_bool	convert_texture(t_identifier const type, char const *line)
 {
-	t_bool		ret;
 	t_map		*map;
 	t_mlximage	texture;
 
-	ret = FALSE;
 	map = get_map_singleton();
 	texture = get_texture(line);
 	if (texture.img)
 	{
-		if (type == NORTH)
+		if (type == NORTH && map->textures.north.img == NULL)
 			map->textures.north = texture;
-		else if (type == SOUTH)
+		else if (type == SOUTH && map->textures.south.img == NULL)
 			map->textures.south = texture;
-		else if (type == WEST)
+		else if (type == WEST && map->textures.west.img == NULL)
 			map->textures.west = texture;
-		else if (type == EAST)
+		else if (type == EAST && map->textures.east.img == NULL)
 			map->textures.east = texture;
-		ret = TRUE;
+		else
+		{
+			free_mlximage(&texture);
+			ft_strerror(INVALID_ARGUMENT, DUPLICATE_IDENTIFIER);
+			return (FALSE);
+		}
+		return (TRUE);
 	}
-	return (ret);
+	return (FALSE);
 }
