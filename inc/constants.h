@@ -44,6 +44,7 @@
 # define BAD_FILE_EXTENTION				"File extension must be '.cub'"
 # define FILE_OPEN_ERROR				"Error opening file"
 # define INVALID_IDENTIFIER				"File has an invalid identifier"
+# define DUPLICATE_IDENTIFIER			"An identifier is duplicated"
 # define MISSING_IDENTIFIERS_BEFORE_MAP	"Missing identifiers before map"
 # define MAP_MUST_BE_LAST				"The map must be the last information"
 # define TEXTURE_ERROR					"Error with one or more textures"

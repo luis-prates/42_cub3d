@@ -100,11 +100,16 @@ t_bool	convert_colour(t_identifier const type, char const *line)
 	colour = get_colour(line);
 	if (colour != -1)
 	{
-		if (type == CEILING)
-			map->colours.celling = colour;
-		else if (type == FLOOR)
-			map->colours.floor = colour;
 		ret = TRUE;
+		if (type == CEILING && map->colours.celling == -1)
+			map->colours.celling = colour;
+		else if (type == FLOOR && map->colours.celling == -1)
+			map->colours.floor = colour;
+		else
+		{
+			ft_strerror(INVALID_ARGUMENT, DUPLICATE_IDENTIFIER);
+			ret = FALSE;
+		}
 	}
 	return (ret);
 }

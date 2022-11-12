@@ -84,13 +84,14 @@ void	free_mlximage(t_mlximage *image)
 	}
 }
 
-int		get_image_pixel(t_mlximage *image, int x, int y)
+int	get_image_pixel(t_mlximage *image, int x, int y)
 {
 	char	*dst;
 
 	if (image->addr)
 	{
-		dst = image->addr + (y * image->line_length + x * (image->bits_per_pixel / 8));
+		dst = image->addr
+			+ (y * image->line_length + x * (image->bits_per_pixel / 8));
 		return (*(unsigned int *)dst);
 	}
 	return (-1);
