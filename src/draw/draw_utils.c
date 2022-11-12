@@ -12,14 +12,6 @@
 
 #include "cub3d.h"
 
-int	my_get_image_pixel(t_mlximage *data, int x, int y)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	return (*(int *)dst);
-}
-
 void	do_dda(t_draw *draw, t_map *map)
 {
 	while (draw->hit == 0)

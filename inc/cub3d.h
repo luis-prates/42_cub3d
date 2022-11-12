@@ -43,7 +43,7 @@ void			free_mlx_window(void **mlx_window);
 t_mlximage		xpm_to_mlx_image(char const *file);
 t_mlximage		new_mlx_image(int const width, int const height);
 void			free_mlximage(t_mlximage *image);
-t_mlximage		free_and_xpm_to_mlx_image(t_mlximage *image, char const *file);
+int				get_image_pixel(t_mlximage *image, int x, int y);
 void			pixel_mlx_image_put(t_mlximage *image,
 					int const x, int const y, int const color);
 
@@ -73,19 +73,17 @@ t_bool			parse_map(char const *filename);
 /* GAME */
 t_bool			start_game(void);
 
-void			create_hooks(void);
 t_bool			is_movement(int keycode);
 void			save_movement(int keycode);
-int				on_key_press(int keycode, void *p);
-int				on_mouse_move(t_mlx *release);
+int				on_mouse_move(void *p);
 int				on_close(void *p);
+void			create_hooks(void);
 
 /* DRAW */
+void			draw_textures(int x);
 void			setup_rays(t_draw *draw, t_player *player);
 void			setup_walls(t_draw *draw, t_player *player);
 void			do_dda(t_draw *draw, t_map *map);
-int				my_get_image_pixel(t_mlximage *data, int x, int y);
 void			handle_player_movement(void);
-void			draw_textures(int x);
 
 #endif

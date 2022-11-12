@@ -17,7 +17,7 @@ static int	on_next_frame(void *p)
 	t_mlx	*mlx;
 	int		x;
 
-	(void) p;
+	(void)p;
 	mlx = get_mlx_singleton();
 	mlx->screen = new_mlx_image(SCREEN_WIDTH, SCREEN_HEIGHT);
 	x = -1;
@@ -34,19 +34,35 @@ static int	on_next_frame(void *p)
 	return (TRUE);
 }
 
-int	on_close(void *p)
+static int	on_focus(void *p)
 {
-	p = (void *)p;
-	free_singletons();
-	exit(EXIT_SUCCESS);
+	(void)p;
+	on_next_frame(NULL);
 	return (TRUE);
 }
 
-static int	on_focus(void *p)
+static int	on_key_press(int keycode, void *p)
 {
-	p = (void *)p;
-	on_next_frame(NULL);
-	return (TRUE);
+	t_bool	ret;
+	t_mlx	*mlx;
+
+	(void)p;
+	ret = TRUE;
+	mlx = get_mlx_singleton();
+	if (keycode == ESC)
+		ret = on_close(NULL);
+	else if (is_movement(keycode))
+		save_movement(keycode);
+	else if (keycode == TOGGLE_MOUSE)
+	{
+		if (mlx->toggle_mouse == TRUE)
+			mlx->toggle_mouse = FALSE;
+		else if (mlx->toggle_mouse == FALSE)
+			mlx->toggle_mouse = TRUE;
+	}
+	else
+		ret = FALSE;
+	return (ret);
 }
 
 static int	on_key_release(int keycode, void *p)
@@ -54,7 +70,7 @@ static int	on_key_release(int keycode, void *p)
 	t_bool		ret;
 	t_player	*player;
 
-	p = (void *)p;
+	(void)p;
 	ret = FALSE;
 	if (is_movement(keycode))
 	{
